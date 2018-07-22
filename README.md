@@ -91,7 +91,7 @@ terminalizer record demo
 A file called `demo.yml` will be created in the current directory. You can open it using any editor to edit the configurations and the recoreded frames. You can replay your recording using the command `play`.
 
 ```bash
-terminalizer record demo
+terminalizer play demo
 ```
 
 Now let's render our recording as an animated gif.
