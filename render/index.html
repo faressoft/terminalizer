@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Terminalizer</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="../node_modules/xterm/dist/xterm.css">
+  <link rel="stylesheet" href="../lib/terminalizer.css">
+
+  <style type="text/css">
+    
+    body {
+      background-color: white;
+      margin: 0;
+    }
+
+    #terminal {
+      display: inline-block;
+      font-size: 0px;
+    }
+
+  </style>
+</head>
+<body>
+  
+  <div id="terminal"></div>
+
+  <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+
+  <script src="../node_modules/xterm/dist/xterm.js"></script>
+  <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="../node_modules/async/dist/async.min.js"></script>
+  <script src="../lib/terminalizer.js"></script>
+
+  <script type="text/javascript">
+
+    var fs            = require('fs'),
+        path          = require('path'),
+        remote        = require('electron').remote,
+        ipcRenderer   = require('electron').ipcRenderer;
+    var currentWindow = remote.getCurrentWindow(),
+        capturePage   = currentWindow.webContents.capturePage,
+        step          = remote.getGlobal('step');
+    
+    /**
+     * Used for the step option
+     * @type {Number}
+     */
+    var stepsCounter = 0;
+
+    /**
+     * Options for the terminalizer plugin
+     * @type {Object}
+     */
+    var options = {
+      recordingFile: 'data.json',
+      frameDelay: 0
+    };
+
+    /**
+     * A middleware that called after rendering frames
+     * 
+     * @param  {Object}   record {delay, content, index}
+     * @param  {Function} next
+     */
+    options.afterMiddleware = function(record, next) {
+
+      var width = this.width();
+      var height = this.height();
+      var captureRect = {x: 0, y: 0, width: width, height: height};
+
+      if (stepsCounter != 0) {
+        stepsCounter = (stepsCounter + 1) % step;
+        return next();
+      }
+
+      stepsCounter = (stepsCounter + 1) % step;
+
+      // A workaround by a delay to make sure the record is rendered
+      setTimeout(function() {
+        
+        capturePage(captureRect, function(img) {
+
+          var outputPath = path.join(__dirname, '/frames/' + record.index + '.png');
+
+          fs.writeFileSync(outputPath, img.toPNG());
+          ipcRenderer.send('captured', record.index);
+          next();
+
+        });
+
+      }, 10);
+
+    };
+
+    // Initialize the terminalizer plugin
+    $('#terminal').terminalizer(options);
+
+    /**
+     * A callback function for the event:
+     * playingDone
+     */
+    $('#terminal').on('playingDone', function() {
+
+      currentWindow.close();
+
+    });
+
+    /**
+     * Catch all unhandled errors
+     * 
+     * @param {String} errorMsg
+     */
+    window.onerror = function(errorMsg) {
+
+      ipcRenderer.send('error', errorMsg);
+
+    };
+
+  </script>
+
+  <script>if (window.module) module = window.module;</script>
+  
+</body>
+</html>
