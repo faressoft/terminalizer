@@ -241,25 +241,25 @@ You can set the colors of your terminal using one of the CSS formats:
 
 The default colors that are assigned to the termianl colors are:
 
-* background: transparent
-* foreground: <code style="background-color: #afafaf">#afafaf</code>.
-* cursor: <code style="background-color: #c7c7c7">#c7c7c7</code>.
-* black: <code style="background-color: #232628;">#232628</code>.
-* red: <code style="background-color: #fc4384">#fc4384</code>.
-* green: <code style="background-color: #b3e33b">#b3e33b</code>.
-* yellow: <code style="background-color: #ffa727">#ffa727</code>.
-* blue: <code style="background-color: #75dff2">#75dff2</code>.
-* magenta: <code style="background-color: #ae89fe">#ae89fe</code>.
-* cyan: <code style="background-color: #708387">#708387</code>.
-* white: <code style="background-color: #d5d5d0">#d5d5d0</code>.
-* brightBlack: <code style="background-color: #626566">#626566</code>.
-* brightRed: <code style="background-color: #ff7fac">#ff7fac</code>.
-* brightGreen: <code style="background-color: #c8ed71">#c8ed71</code>.
-* brightYellow: <code style="background-color: #ebdf86">#ebdf86</code>.
-* brightBlue: <code style="background-color: #75dff2">#75dff2</code>.
-* brightMagenta: <code style="background-color: #ae89fe">#ae89fe</code>.
-* brightCyan: <code style="background-color: #b1c6ca">#b1c6ca</code>.
-* brightWhite: <code style="background-color: #f9f9f4">#f9f9f4</code>.
+* background: ![#ffffff](https://placehold.it/15/ffffff/000000?text=+) `transparent`
+* foreground: ![#afafaf](https://placehold.it/15/afafaf/000000?text=+) `#afafaf`
+* cursor: ![#c7c7c7](https://placehold.it/15/c7c7c7/000000?text=+) `#c7c7c7`
+* black: ![#232628](https://placehold.it/15/232628/000000?text=+) `#232628`
+* red: ![#fc4384](https://placehold.it/15/fc4384/000000?text=+) `#fc4384`
+* green: ![#b3e33b](https://placehold.it/15/b3e33b/000000?text=+) `#b3e33b`
+* yellow: ![#ffa727](https://placehold.it/15/ffa727/000000?text=+) `#ffa727`
+* blue: ![#75dff2](https://placehold.it/15/75dff2/000000?text=+) `#75dff2`
+* magenta: ![#ae89fe](https://placehold.it/15/ae89fe/000000?text=+) `#ae89fe`
+* cyan: ![#708387](https://placehold.it/15/708387/000000?text=+) `#708387`
+* white: ![#d5d5d0](https://placehold.it/15/d5d5d0/000000?text=+) `#d5d5d0`
+* brightBlack: ![#626566](https://placehold.it/15/626566/000000?text=+) `#626566`
+* brightRed: ![#ff7fac](https://placehold.it/15/ff7fac/000000?text=+) `#ff7fac`
+* brightGreen: ![#c8ed71](https://placehold.it/15/c8ed71/000000?text=+) `#c8ed71`
+* brightYellow: ![#ebdf86](https://placehold.it/15/ebdf86/000000?text=+) `#ebdf86`
+* brightBlue: ![#75dff2](https://placehold.it/15/75dff2/000000?text=+) `#75dff2`
+* brightMagenta: ![#ae89fe](https://placehold.it/15/ae89fe/000000?text=+) `#ae89fe`
+* brightCyan: ![#b1c6ca](https://placehold.it/15/b1c6ca/000000?text=+) `#b1c6ca`
+* brightWhite: ![#f9f9f4](https://placehold.it/15/f9f9f4/000000?text=+) `#f9f9f4`
 
 ## Watermark
 
