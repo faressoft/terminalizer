@@ -53,7 +53,7 @@ Built while listening to [Ever Felt Pt.1 - Otis McDonald](https://www.youtube.co
 * Custom `colors`.
 * Custom `styles` with `CSS`.
 * Watermark.
-* Edit and adjust delays before rendering.
+* Edit frames and adjust delays before rendering.
 * Skipping frames by a step value to reduce the number of rendered frames.
 * Render images with texts on them instead of capturing your screen for better quality.
 * The ability to configure:
