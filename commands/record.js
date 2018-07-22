@@ -48,7 +48,7 @@ function normalizeConfig(config) {
     if (di.os.platform() === 'win32') {
       di.utility.changeYAMLValue(config, 'command', 'powershell.exe');
     } else {
-      di.utility.changeYAMLValue(config, 'command', 'bash');
+      di.utility.changeYAMLValue(config, 'command', 'bash -l');
     }
 
   }
