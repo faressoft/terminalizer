@@ -80,6 +80,50 @@ npm install -g terminalizer
 
 <p align="center"><img src="/img/install.gif?raw=true"/></p>
 
+If the installation failed, you may need to install the developement tools to build the `C++` addons.
+
+For MacOS
+
+```bash
+xcode-select --install
+```
+
+For RHEL, CentOS, Scientific Linux, Fedora
+
+```bash
+yum update
+yum groupinstall "Development Tools"
+```
+
+For Debian, Ubuntu and derivatives
+
+```bash
+sudo apt-get update
+sudo apt-get install build-essential
+```
+
+For openSUSE/SUSE
+
+```bash
+zypper refresh
+zypper update
+zypper install -t pattern devel_C_C++
+```
+
+For Arch Linux and derivatives
+
+```bash
+sudo pacman -Syyu
+sudo pacman -S base-devel
+```
+
+Verifying Installation
+
+```bash
+gcc -v
+make -v
+```
+
 ## Getting Started
 
 Start recording your terminal using the command `record`.
