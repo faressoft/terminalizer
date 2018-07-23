@@ -82,6 +82,8 @@ npm install -g terminalizer
 
 If the installation failed, you may need to install the developement tools to build the `C++` addons.
 
+⚠️ Terminalizer uses some `C++` addons that require building. Until we release the first stable version that will include prebuilt binaries for different OSs you may need to install some tools to build for now. Try the following, if they don't solve your installation issue, check [https://github.com/nodejs/node-gyp#installation](https://github.com/nodejs/node-gyp#installation).
+
 For MacOS
 
 ```bash
