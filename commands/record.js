@@ -185,6 +185,9 @@ function command(argv) {
     env: di.deepmerge(process.env, config.json.env)
   });
 
+  console.log('The recording session is started');
+  console.log('Press', di.chalk.green('CTRL+D'), 'to exit and save the recording');
+
   // Input and output capturing and redirection
   ptyProcess.on('data', onData);
   ptyProcess.on('exit', done);
