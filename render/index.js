@@ -8,16 +8,19 @@
 var path          = require('path'),
     app           = require('electron').app,
     BrowserWindow = require('electron').BrowserWindow,
-    ipcMain       = require('electron').ipcMain;
+    ipcMain       = require('electron').ipcMain,
+    os            = require('os');
 
 // Set as global to be read by the web page
 global.step = process.argv[2] || 1;
 
-// Hide the Dock for macOS
-app.dock.hide();
-
 // Set the display scale factor to 1
 app.commandLine.appendSwitch('force-device-scale-factor', 1);
+
+// Hide the Dock for macOS
+if (os.platform() == 'darwin') {
+  app.dock.hide();
+}
 
 // When the app is ready
 app.on('ready', createWindow);
