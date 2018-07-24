@@ -12,6 +12,28 @@
   "bin": {
     "terminalizer": "bin/app.js"
   },
+  "keywords": [
+    "terminal",
+    "record",
+    "capture",
+    "tty",
+    "shot",
+    "bash",
+    "powershell",
+    "gif",
+    "animated",
+    "generate",
+    "theme",
+    "colors",
+    "font",
+    "repeat",
+    "command-line",
+    "shell",
+    "zsh",
+    "bash-profile",
+    "render",
+    "pty"
+  ],
   "dependencies": {
     "async": "^2.6.1",
     "async-promises": "^0.2.1",
