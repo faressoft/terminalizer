@@ -44,7 +44,7 @@ Built while listening to [Ever Felt Pt.1 - Otis McDonald](https://www.youtube.co
     * [Styling Hint](#styling-hint)
 * [License](#license)
 
-## Features
+# Features
 
 * Highly customizable.
 * Corss platform (Linux, Windows, MacOS).
@@ -70,7 +70,7 @@ Built while listening to [Ever Felt Pt.1 - Otis McDonald](https://www.youtube.co
   * letter spacing.
   * theme.
 
-## Installation
+# Installation
 
 You need first to install [Node.js](https://nodejs.org/en/download/), then install the tool globally using this command:
 
@@ -126,7 +126,7 @@ gcc -v
 make -v
 ```
 
-## Getting Started
+# Getting Started
 
 Start recording your terminal using the command `record`.
 
@@ -146,11 +146,11 @@ Now let's render our recording as an animated gif.
 terminalizer render demo
 ```
 
-### Compression
+## Compression
 
 GIF compression is not implementated yet. For now we recommend [https://gifcompressor.com](https://gifcompressor.com).
 
-## Usage
+# Usage
 
 > You can use the option `--help` to get more details about the commands and their options.
 
@@ -158,7 +158,7 @@ GIF compression is not implementated yet. For now we recommend [https://gifcompr
 terminalizer <command> [options]
 ```
 
-### Config
+## Config
 
 > Generate a config file in the current directory
 
@@ -166,7 +166,7 @@ terminalizer <command> [options]
 terminalizer config
 ```
 
-### Record
+## Record
 
 > Record your terminal and create a recording file
 
@@ -188,7 +188,7 @@ terminalizer record foo                      Start recording and create a record
 terminalizer record foo --config config.yml  Start recording with with your own configurations
 ```
 
-### Play
+## Play
 
 > Play a recording file on your terminal
 
@@ -203,7 +203,7 @@ Options
 -s, --speed-factor  Speed factor, multiply the frames delays by this factor [number] [default: 1]
 ```
 
-### Render
+## Render
 
 > Render a recording file as an animated gif image
 
@@ -219,7 +219,7 @@ Options
 -s, --step     To reduce the number of rendered frames (step > 1) [number] [default: 1]
 ```
 
-### Share
+## Share
 
 > Upload a recording file and get a link for an online player
 
@@ -227,7 +227,7 @@ Options
 terminalizer share <recordingFile>
 ```
 
-### Generate
+## Generate
 
 > Generate a web player for a recording file
 
@@ -235,7 +235,7 @@ terminalizer share <recordingFile>
 terminalizer generate <recordingFile>
 ```
 
-## Configurations
+# Configurations
 
 The default `config.yml` file is stored at root directory of the project. Execute the bellow command to copy it to your current directory.
 
