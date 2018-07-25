@@ -42,9 +42,10 @@ function createWindow() {
  * A callback function for the event:
  * When a frame is captured
  * 
+ * @param {Object} event
  * @param {Number} recordIndex
  */
-ipcMain.on('captured', function(recordIndex) {
+ipcMain.on('captured', function(event, recordIndex) {
 
   console.log(recordIndex);
   

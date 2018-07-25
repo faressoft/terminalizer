@@ -99,6 +99,11 @@ function renderFrames(records, options) {
 
     render.stdout.on('data', function(data) {
 
+      // Is not a recordIndex (to skip Electron's logs or new lines)
+      if (di.is.not.number(parseInt(data.toString()))) {
+        return;
+      }
+
       progressBar.tick();
 
       // Rendering is completed
