@@ -269,7 +269,7 @@ terminalizer config
 ## Terminal
 
 * `cursorStyle`: Cursor style can be one of `block`, `underline`, or `bar`.
-* `fontFamily`: You can use any font that is installed on your machine like `Monaco` or `Lucida Console`.
+* `fontFamily`: You can use any font that is installed on your machine like `Monaco` or `Lucida Console` (CSS-like list).
 * `fontSize`: The size of the font in pixels.
 * `lineHeight`: The height of lines in pixels.
 * `letterSpacing`: The spacing between letters in pixels.

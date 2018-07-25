@@ -72,7 +72,7 @@ cursorStyle: block
 
 # Font family
 # You can use any font that is installed on your machine
-fontFamily: Monaco, Lucida Console
+fontFamily: Monaco, "Lucida Console", "Ubuntu Mono", Monospace
 
 # The size of the font
 fontSize: 12
