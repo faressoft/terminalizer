@@ -42,6 +42,7 @@ Built while listening to [Ever Felt Pt.1 - Otis McDonald](https://www.youtube.co
     * [Solid Frame](#solid-frame)
     * [Solid Frame Without Title](#solid-frame-without-title)
     * [Styling Hint](#styling-hint)
+* [FAQ](#faq)
 * [Issues](#issues)
 * [License](#license)
 
@@ -411,6 +412,37 @@ frameBox:
   style:
     boxShadow: none
     margin: 0px
+```
+
+# FAQ
+
+### How to support ZSH
+
+The default command that gets recoreded for Linux is `bash -l`. You need to change the default command to `zsh`.
+
+* Generate a config file in the current directory
+
+```bash
+terminalizer config
+```
+
+* Open the generated config file in your preferred editor.
+* Change the `command` to `zsh`:
+
+```
+command: zsh
+```
+
+* You man need to change the font, check the font that is used in your terminal:
+
+```
+fontFamily: "Meslo for Powerline, Meslo LG M for Powerline"
+```
+
+* Use the option `-c` to include the config file:
+
+```bash
+terminalizer record demo -c config.yml
 ```
 
 # Issues
