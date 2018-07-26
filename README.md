@@ -42,6 +42,7 @@ Built while listening to [Ever Felt Pt.1 - Otis McDonald](https://www.youtube.co
     * [Solid Frame](#solid-frame)
     * [Solid Frame Without Title](#solid-frame-without-title)
     * [Styling Hint](#styling-hint)
+* [Issues](#issues)
 * [License](#license)
 
 # Features
@@ -79,6 +80,8 @@ npm install -g terminalizer
 ```
 
 <p align="center"><img src="/img/install.gif?raw=true"/></p>
+
+> Still facing an issue ? Check the [Issues](#issues) section or open an new issue.
 
 If the installation failed, you may need to install the developement tools to build the `C++` addons.
 
@@ -408,6 +411,24 @@ frameBox:
   style:
     boxShadow: none
     margin: 0px
+```
+
+# Issues
+
+> error while loading shared libraries: libXss.so.1: cannot open shared object file: No such file or directory
+
+Solution:
+
+```bash
+sudo yum install libXScrnSaver
+```
+
+> error while loading shared libraries: libgconf-2.so.4: cannot open shared object file: No such file or directory
+
+Solution:
+
+```bash
+sudo apt-get install libgconf-2-4
 ```
 
 # License
