@@ -433,7 +433,7 @@ terminalizer config
 command: zsh
 ```
 
-* You man need to change the font, check the font that is used in your terminal:
+* You may need to change the font, check the font that is used in your terminal:
 
 ```
 fontFamily: "Meslo for Powerline, Meslo LG M for Powerline"
