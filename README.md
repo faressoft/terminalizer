@@ -49,7 +49,7 @@ Built while listening to [Ever Felt Pt.1 - Otis McDonald](https://www.youtube.co
 # Features
 
 * Highly customizable.
-* Corss platform (Linux, Windows, MacOS).
+* Cross platform (Linux, Windows, MacOS).
 * Custom `window frames`.
 * Custom `font`.
 * Custom `colors`.
