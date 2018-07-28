@@ -90,7 +90,7 @@ var argv = yargs.parse();
 function errorHandler(message) {
 
   console.error('Error: \n  ' + message + '\n');
-  console.error('Hint:\n  Use the option ' + chalk.green('--help') + ' to get help about the usage');
+  console.error('Hint:\n  Use the ' + chalk.green('--help') + ' option to get help about the usage');
   process.exit(1);
 
 }

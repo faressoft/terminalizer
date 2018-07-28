@@ -11,7 +11,7 @@
 
 Built to be jusT cOol 👌🦄 !
 
-> If you think so, support me by a `star` and a `follow` 😘
+> If you think so, support me with a `star` and a `follow` 😘
 
 Built while listening to [Ever Felt Pt.1 - Otis McDonald](https://www.youtube.com/watch?v=-BiXhuRq7fU) 🎵 And [Nyan Cat](https://www.youtube.com/watch?v=QH2-TGUlwu4) 😛
 
@@ -74,7 +74,7 @@ Built while listening to [Ever Felt Pt.1 - Otis McDonald](https://www.youtube.co
 
 # Installation
 
-You need first to install [Node.js](https://nodejs.org/en/download/), then install the tool globally using this command:
+You need to install [Node.js](https://nodejs.org/en/download/) first, then install the tool globally using this command:
 
 ```bash
 npm install -g terminalizer
@@ -82,7 +82,7 @@ npm install -g terminalizer
 
 <p align="center"><img src="/img/install.gif?raw=true"/></p>
 
-> Still facing an issue ? Check the [Issues](#issues) section or open an new issue.
+> Still facing an issue ? Check the [Issues](#issues) section or open a new issue.
 
 If the installation failed, you may need to install the development tools to build the `C++` addons.
 
@@ -132,13 +132,13 @@ make -v
 
 # Getting Started
 
-Start recording your terminal using the command `record`.
+Start recording your terminal using the `record` command.
 
 ```bash
 terminalizer record demo
 ```
 
-A file called `demo.yml` will be created in the current directory. You can open it using any editor to edit the configurations and the recorded frames. You can replay your recording using the command `play`.
+A file called `demo.yml` will be created in the current directory. You can open it using any editor to edit the configurations and the recorded frames. You can replay your recording using the `play` command.
 
 ```bash
 terminalizer play demo
@@ -156,7 +156,7 @@ GIF compression is not implemented yet. For now we recommend [https://gifcompres
 
 # Usage
 
-> You can use the option `--help` to get more details about the commands and their options.
+> You can use the `--help` option to get more details about the commands and their options
 
 ```bash
 terminalizer <command> [options]
@@ -243,7 +243,7 @@ terminalizer generate <recordingFile>
 
 The default `config.yml` file is stored at root directory of the project. Execute the below command to copy it to your current directory.
 
-> Use any editor to edit the copied `config.yml`, then use the option `-c` to overwrite the default one.
+> Use any editor to edit the copied `config.yml`, then use the `-c` option to override the default one.
 
 ```bash
 terminalizer config
@@ -251,9 +251,9 @@ terminalizer config
 
 ## Recording
 
-* `command`: Specify a command to be executed like `/bin/bash -l`, `ls`, or any other commands. The default is `bash` for `Linux` or `powershell.exe` for `Windows`.
+* `command`: Specify a command to be executed like `/bin/bash -l`, `ls`, or any other command. The default is `bash` for `Linux` or `powershell.exe` for `Windows`.
 * `cwd`: Specify the current working directory path. The default is the current working directory path.
-* `env`: Export additional ENV variables, to be read by your scripts when start recording.
+* `env`: Export additional ENV variables, to be read by your scripts when starting the recording.
 * `cols`: Explicitly set the number of columns or use `auto` to take the current number of columns of your shell.
 * `rows`: Explicitly set the number of rows or use `auto` to take the current number of rows of your shell.
 
@@ -337,7 +337,7 @@ Terminalizer comes with predefined frames that you can use to make your GIF imag
 
 * `frameBox.type`: Can be `null`, `window`, `floating`, or `solid`.
 * `frameBox.title`: To display a title for the frame or `null`.
-* `frameBox.style`: To apply custom CSS styles or to overwrite the current ones.
+* `frameBox.style`: To apply custom CSS styles or to override the current ones.
 
 ### Null Frame
 
@@ -439,7 +439,7 @@ command: zsh
 fontFamily: "Meslo for Powerline, Meslo LG M for Powerline"
 ```
 
-* Use the option `-c` to include the config file:
+* Use the `-c` option to override the config file:
 
 ```bash
 terminalizer record demo -c config.yml
