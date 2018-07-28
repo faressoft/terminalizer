@@ -271,6 +271,6 @@ module.exports.builder = function(yargs) {
 
   // Add examples
   yargs.example('$0 record foo', 'Start recording and create a recording file called foo.yml');
-  yargs.example('$0 record foo --config config.yml', 'Start recording with with your own configurations');
+  yargs.example('$0 record foo --config config.yml', 'Start recording with your own configurations');
 
 };

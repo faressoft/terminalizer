@@ -84,7 +84,7 @@ npm install -g terminalizer
 
 > Still facing an issue ? Check the [Issues](#issues) section or open an new issue.
 
-If the installation failed, you may need to install the developement tools to build the `C++` addons.
+If the installation failed, you may need to install the development tools to build the `C++` addons.
 
 ⚠️ Terminalizer uses some `C++` addons that require building. Until we release the first stable version that will include prebuilt binaries for different OSs you may need to install some tools to build for now. Try the following, if they don't solve your installation issue, check [https://github.com/nodejs/node-gyp#installation](https://github.com/nodejs/node-gyp#installation).
 
@@ -138,7 +138,7 @@ Start recording your terminal using the command `record`.
 terminalizer record demo
 ```
 
-A file called `demo.yml` will be created in the current directory. You can open it using any editor to edit the configurations and the recoreded frames. You can replay your recording using the command `play`.
+A file called `demo.yml` will be created in the current directory. You can open it using any editor to edit the configurations and the recorded frames. You can replay your recording using the command `play`.
 
 ```bash
 terminalizer play demo
@@ -152,7 +152,7 @@ terminalizer render demo
 
 ## Compression
 
-GIF compression is not implementated yet. For now we recommend [https://gifcompressor.com](https://gifcompressor.com).
+GIF compression is not implemented yet. For now we recommend [https://gifcompressor.com](https://gifcompressor.com).
 
 # Usage
 
@@ -189,7 +189,7 @@ Examples
 
 ```
 terminalizer record foo                      Start recording and create a recording file called foo.yml
-terminalizer record foo --config config.yml  Start recording with with your own configurations
+terminalizer record foo --config config.yml  Start recording with your own configurations
 ```
 
 ## Play
@@ -241,7 +241,7 @@ terminalizer generate <recordingFile>
 
 # Configurations
 
-The default `config.yml` file is stored at root directory of the project. Execute the bellow command to copy it to your current directory.
+The default `config.yml` file is stored at root directory of the project. Execute the below command to copy it to your current directory.
 
 > Use any editor to edit the copied `config.yml`, then use the option `-c` to overwrite the default one.
 
@@ -255,12 +255,12 @@ terminalizer config
 * `cwd`: Specify the current working directory path. The default is the current working directory path.
 * `env`: Export additional ENV variables, to be read by your scripts when start recording.
 * `cols`: Explicitly set the number of columns or use `auto` to take the current number of columns of your shell.
-* `rows`: Explicitly set the number of rows or use `auto` to take the current number of columns of your shell.
+* `rows`: Explicitly set the number of rows or use `auto` to take the current number of rows of your shell.
 
 ## Delays
 
 * `frameDelay`: The delay between frames in ms. If the value is `auto` use the actual recording delays.
-* `maxIdleTime`: Maximum delay between frames in ms. Ignored if the `frameDelay` isn't set to `auto`. Set to `auto` to prevnt limiting the max idle time.
+* `maxIdleTime`: Maximum delay between frames in ms. Ignored if the `frameDelay` isn't set to `auto`. Set to `auto` to prevent limiting the max idle time.
 
 ## GIF
 
@@ -287,9 +287,9 @@ You can set the colors of your terminal using one of the CSS formats:
 * HSL: `hsl(0, 0%, 100%)`.
 * Name: 'white', 'red', 'blue', 
 
-> You can use the the value `transparent` too.
+> You can use the value `transparent` too.
 
-The default colors that are assigned to the termianl colors are:
+The default colors that are assigned to the terminal colors are:
 
 * background: ![#ffffff](https://placehold.it/15/ffffff/000000?text=+) `transparent`
 * foreground: ![#afafaf](https://placehold.it/15/afafaf/000000?text=+) `#afafaf`
@@ -337,7 +337,7 @@ Terminalizer comes with predefined frames that you can use to make your GIF imag
 
 * `frameBox.type`: Can be `null`, `window`, `floating`, or `solid`.
 * `frameBox.title`: To display a title for the frame or `null`.
-* `frameBox.style`: To apply custom CSS styles or to overwrite the current onces.
+* `frameBox.style`: To apply custom CSS styles or to overwrite the current ones.
 
 ### Null Frame
 
@@ -418,7 +418,7 @@ frameBox:
 
 ### How to support ZSH
 
-The default command that gets recoreded for Linux is `bash -l`. You need to change the default command to `zsh`.
+The default command that gets recorded for Linux is `bash -l`. You need to change the default command to `zsh`.
 
 * Generate a config file in the current directory
 
