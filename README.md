@@ -65,12 +65,12 @@ Built while listening to [Ever Felt Pt.1 - Otis McDonald](https://www.youtube.co
   * GIF quality and repeating.
   * Frames delays.
   * The max idle time between frames.
-  * cursor style.
-  * font.
-  * font size.
-  * line height.
-  * letter spacing.
-  * theme.
+  * Cursor style.
+  * Font.
+  * Font size.
+  * Line height.
+  * Letter spacing.
+  * Theme.
 
 # Installation
 
@@ -268,7 +268,7 @@ terminalizer config
 * `repeat`: Amount of times to repeat GIF:
   * If value is `-1`, play once.
   * If value is `0`, loop indefinitely.
-  * If value is `a` positive number, loop n times.
+  * If value is a positive number, loop `n` times.
 
 ## Terminal
 
@@ -285,7 +285,7 @@ You can set the colors of your terminal using one of the CSS formats:
 * Hex: `#FFFFFF`.
 * RGB: `rgb(255, 255, 255)`.
 * HSL: `hsl(0, 0%, 100%)`.
-* Name: 'white', 'red', 'blue', 
+* Name: `white`, `red`, `blue`.
 
 > You can use the value `transparent` too.
 
@@ -328,7 +328,7 @@ watermark:
     opacity: 0.9
 ```
 
-* `watermark.imagePath`: An absolute path for the image on your machine or a url.
+* `watermark.imagePath`: An absolute path for the image on your machine or a URL.
 * `watermark.style`: Apply CSS styles (camelCase) to the watermark image, like resizing it.
 
 ## Frame Box
@@ -401,7 +401,7 @@ frameBox:
 
 ### Styling Hint
 
-You can disable the default shadows and margins by:
+You can disable the default shadows and margins.
 
 <p align="center"><img src="/img/frames/solid_without_title_without_shadows.gif?raw=true"/></p>
 
