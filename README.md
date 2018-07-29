@@ -11,7 +11,7 @@
 
 Built to be jusT cOol 👌🦄 !
 
-> If you think so, support me by a `star` and a `follow` 😘
+> If you think so, support me with a `star` and a `follow` 😘
 
 Built while listening to [Ever Felt Pt.1 - Otis McDonald](https://www.youtube.com/watch?v=-BiXhuRq7fU) 🎵 And [Nyan Cat](https://www.youtube.com/watch?v=QH2-TGUlwu4) 😛
 
@@ -65,16 +65,16 @@ Built while listening to [Ever Felt Pt.1 - Otis McDonald](https://www.youtube.co
   * GIF quality and repeating.
   * Frames delays.
   * The max idle time between frames.
-  * cursor style.
-  * font.
-  * font size.
-  * line height.
-  * letter spacing.
-  * theme.
+  * Cursor style.
+  * Font.
+  * Font size.
+  * Line height.
+  * Letter spacing.
+  * Theme.
 
 # Installation
 
-You need first to install [Node.js](https://nodejs.org/en/download/), then install the tool globally using this command:
+You need to install [Node.js](https://nodejs.org/en/download/) first, then install the tool globally using this command:
 
 ```bash
 npm install -g terminalizer
@@ -82,9 +82,9 @@ npm install -g terminalizer
 
 <p align="center"><img src="/img/install.gif?raw=true"/></p>
 
-> Still facing an issue ? Check the [Issues](#issues) section or open an new issue.
+> Still facing an issue ? Check the [Issues](#issues) section or open a new issue.
 
-If the installation failed, you may need to install the developement tools to build the `C++` addons.
+If the installation failed, you may need to install the development tools to build the `C++` addons.
 
 ⚠️ Terminalizer uses some `C++` addons that require building. Until we release the first stable version that will include prebuilt binaries for different OSs you may need to install some tools to build for now. Try the following, if they don't solve your installation issue, check [https://github.com/nodejs/node-gyp#installation](https://github.com/nodejs/node-gyp#installation).
 
@@ -132,13 +132,13 @@ make -v
 
 # Getting Started
 
-Start recording your terminal using the command `record`.
+Start recording your terminal using the `record` command.
 
 ```bash
 terminalizer record demo
 ```
 
-A file called `demo.yml` will be created in the current directory. You can open it using any editor to edit the configurations and the recoreded frames. You can replay your recording using the command `play`.
+A file called `demo.yml` will be created in the current directory. You can open it using any editor to edit the configurations and the recorded frames. You can replay your recording using the `play` command.
 
 ```bash
 terminalizer play demo
@@ -152,11 +152,11 @@ terminalizer render demo
 
 ## Compression
 
-GIF compression is not implementated yet. For now we recommend [https://gifcompressor.com](https://gifcompressor.com).
+GIF compression is not implemented yet. For now we recommend [https://gifcompressor.com](https://gifcompressor.com).
 
 # Usage
 
-> You can use the option `--help` to get more details about the commands and their options.
+> You can use the `--help` option to get more details about the commands and their options
 
 ```bash
 terminalizer <command> [options]
@@ -189,7 +189,7 @@ Examples
 
 ```
 terminalizer record foo                      Start recording and create a recording file called foo.yml
-terminalizer record foo --config config.yml  Start recording with with your own configurations
+terminalizer record foo --config config.yml  Start recording with your own configurations
 ```
 
 ## Play
@@ -241,9 +241,9 @@ terminalizer generate <recordingFile>
 
 # Configurations
 
-The default `config.yml` file is stored at root directory of the project. Execute the bellow command to copy it to your current directory.
+The default `config.yml` file is stored at root directory of the project. Execute the below command to copy it to your current directory.
 
-> Use any editor to edit the copied `config.yml`, then use the option `-c` to overwrite the default one.
+> Use any editor to edit the copied `config.yml`, then use the `-c` option to override the default one.
 
 ```bash
 terminalizer config
@@ -251,16 +251,16 @@ terminalizer config
 
 ## Recording
 
-* `command`: Specify a command to be executed like `/bin/bash -l`, `ls`, or any other commands. The default is `bash` for `Linux` or `powershell.exe` for `Windows`.
+* `command`: Specify a command to be executed like `/bin/bash -l`, `ls`, or any other command. The default is `bash` for `Linux` or `powershell.exe` for `Windows`.
 * `cwd`: Specify the current working directory path. The default is the current working directory path.
-* `env`: Export additional ENV variables, to be read by your scripts when start recording.
+* `env`: Export additional ENV variables, to be read by your scripts when starting the recording.
 * `cols`: Explicitly set the number of columns or use `auto` to take the current number of columns of your shell.
-* `rows`: Explicitly set the number of rows or use `auto` to take the current number of columns of your shell.
+* `rows`: Explicitly set the number of rows or use `auto` to take the current number of rows of your shell.
 
 ## Delays
 
 * `frameDelay`: The delay between frames in ms. If the value is `auto` use the actual recording delays.
-* `maxIdleTime`: Maximum delay between frames in ms. Ignored if the `frameDelay` isn't set to `auto`. Set to `auto` to prevnt limiting the max idle time.
+* `maxIdleTime`: Maximum delay between frames in ms. Ignored if the `frameDelay` isn't set to `auto`. Set to `auto` to prevent limiting the max idle time.
 
 ## GIF
 
@@ -268,7 +268,7 @@ terminalizer config
 * `repeat`: Amount of times to repeat GIF:
   * If value is `-1`, play once.
   * If value is `0`, loop indefinitely.
-  * If value is `a` positive number, loop n times.
+  * If value is a positive number, loop `n` times.
 
 ## Terminal
 
@@ -285,11 +285,11 @@ You can set the colors of your terminal using one of the CSS formats:
 * Hex: `#FFFFFF`.
 * RGB: `rgb(255, 255, 255)`.
 * HSL: `hsl(0, 0%, 100%)`.
-* Name: 'white', 'red', 'blue', 
+* Name: `white`, `red`, `blue`.
 
-> You can use the the value `transparent` too.
+> You can use the value `transparent` too.
 
-The default colors that are assigned to the termianl colors are:
+The default colors that are assigned to the terminal colors are:
 
 * background: ![#ffffff](https://placehold.it/15/ffffff/000000?text=+) `transparent`
 * foreground: ![#afafaf](https://placehold.it/15/afafaf/000000?text=+) `#afafaf`
@@ -328,7 +328,7 @@ watermark:
     opacity: 0.9
 ```
 
-* `watermark.imagePath`: An absolute path for the image on your machine or a url.
+* `watermark.imagePath`: An absolute path for the image on your machine or a URL.
 * `watermark.style`: Apply CSS styles (camelCase) to the watermark image, like resizing it.
 
 ## Frame Box
@@ -337,7 +337,7 @@ Terminalizer comes with predefined frames that you can use to make your GIF imag
 
 * `frameBox.type`: Can be `null`, `window`, `floating`, or `solid`.
 * `frameBox.title`: To display a title for the frame or `null`.
-* `frameBox.style`: To apply custom CSS styles or to overwrite the current onces.
+* `frameBox.style`: To apply custom CSS styles or to override the current ones.
 
 ### Null Frame
 
@@ -401,7 +401,7 @@ frameBox:
 
 ### Styling Hint
 
-You can disable the default shadows and margins by:
+You can disable the default shadows and margins.
 
 <p align="center"><img src="/img/frames/solid_without_title_without_shadows.gif?raw=true"/></p>
 
@@ -418,7 +418,7 @@ frameBox:
 
 ### How to support ZSH
 
-The default command that gets recoreded for Linux is `bash -l`. You need to change the default command to `zsh`.
+The default command that gets recorded for Linux is `bash -l`. You need to change the default command to `zsh`.
 
 * Generate a config file in the current directory
 
@@ -439,7 +439,7 @@ command: zsh
 fontFamily: "Meslo for Powerline, Meslo LG M for Powerline"
 ```
 
-* Use the option `-c` to include the config file:
+* Use the `-c` option to override the config file:
 
 ```bash
 terminalizer record demo -c config.yml
