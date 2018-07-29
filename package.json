@@ -1,6 +1,6 @@
 {
   "name": "terminalizer",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Record your terminal and generate animated gif images",
   "main": "bin/app.js",
   "author": "Mohammad Fares <faressoft.com@gmail.com>",
