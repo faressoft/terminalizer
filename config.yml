@@ -38,7 +38,7 @@ frameDelay: auto
 
 # Maximum delay between frames in ms
 # Ignored if the `frameDelay` isn't set to `auto`
-# Set to `auto` to prevnt limiting the max idle time
+# Set to `auto` to prevent limiting the max idle time
 maxIdleTime: 2000
 
 # The surrounding frame box
