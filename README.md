@@ -10,7 +10,7 @@
 
 <p align="center"><img src="/img/demo.gif?raw=true"/></p>
 
-Built to be jusT cOol 👌🦄 !
+Built to be just cool 👌🦄 !
 
 > If you think so, support me with a `star` and a `follow` 😘
 
@@ -89,27 +89,27 @@ If the installation failed, you may need to install the development tools to bui
 
 ⚠️ Terminalizer uses some `C++` addons that require building. Until we release the first stable version that will include prebuilt binaries for different OSs you may need to install some tools to build for now. Try the following, if they don't solve your installation issue, check [https://github.com/nodejs/node-gyp#installation](https://github.com/nodejs/node-gyp#installation).
 
-For MacOS
+For MacOS:
 
 ```bash
 xcode-select --install
 ```
 
-For RHEL, CentOS, Scientific Linux, Fedora
+For RHEL, CentOS, Scientific Linux, Fedora:
 
 ```bash
 yum update
 yum groupinstall "Development Tools"
 ```
 
-For Debian, Ubuntu and derivatives
+For Debian, Ubuntu and derivatives:
 
 ```bash
 sudo apt-get update
 sudo apt-get install build-essential
 ```
 
-For openSUSE/SUSE
+For openSUSE/SUSE:
 
 ```bash
 zypper refresh
@@ -117,14 +117,14 @@ zypper update
 zypper install -t pattern devel_C_C++
 ```
 
-For Arch Linux and derivatives
+For Arch Linux and derivatives:
 
 ```bash
 sudo pacman -Syyu
 sudo pacman -S base-devel
 ```
 
-Verifying Installation
+Verifying Installation:
 
 ```bash
 gcc -v
@@ -133,19 +133,19 @@ make -v
 
 # Getting Started
 
-Start recording your terminal using the `record` command.
+Start recording your terminal using the `record` command:
 
 ```bash
 terminalizer record demo
 ```
 
-A file called `demo.yml` will be created in the current directory. You can open it using any editor to edit the configurations and the recorded frames. You can replay your recording using the `play` command.
+A file called `demo.yml` will be created in the current directory. You can open it using any editor to edit the configurations and the recorded frames. You can replay your recording using the `play` command:
 
 ```bash
 terminalizer play demo
 ```
 
-Now let's render our recording as an animated gif.
+Now let's render our recording as an animated gif:
 
 ```bash
 terminalizer render demo
@@ -157,7 +157,7 @@ GIF compression is not implemented yet. For now we recommend [https://gifcompres
 
 # Usage
 
-> You can use the `--help` option to get more details about the commands and their options
+> You can use the `--help` option to get more details about the commands and their options:
 
 ```bash
 terminalizer <command> [options]
@@ -165,7 +165,7 @@ terminalizer <command> [options]
 
 ## Config
 
-> Generate a config file in the current directory
+> Generate a config file in the current directory:
 
 ```bash
 terminalizer config
@@ -173,20 +173,20 @@ terminalizer config
 
 ## Record
 
-> Record your terminal and create a recording file
+> Record your terminal and create a recording file:
 
 ```bash
 terminalizer record <recordingFile>
 ```
 
-Options
+Options:
 
 ```
 -c, --config   Overwrite the default configurations [string]
 -d, --command  The command to be executed           [string] [default: null]
 ```
 
-Examples
+Examples:
 
 ```
 terminalizer record foo                      Start recording and create a recording file called foo.yml
@@ -195,13 +195,13 @@ terminalizer record foo --config config.yml  Start recording with your own confi
 
 ## Play
 
-> Play a recording file on your terminal
+> Play a recording file on your terminal:
 
 ```bash
 terminalizer play <recordingFile>
 ```
 
-Options
+Options:
 
 ```
 -r, --real-timing   Use the actual delays between frames as recorded        [boolean] [default: false]
@@ -210,13 +210,13 @@ Options
 
 ## Render
 
-> Render a recording file as an animated gif image
+> Render a recording file as an animated gif image:
 
 ```bash
 terminalizer render <recordingFile>
 ```
 
-Options
+Options:
 
 ```
 -o, --output   A name for the output file                                      [string]
@@ -226,7 +226,7 @@ Options
 
 ## Share
 
-> Upload a recording file and get a link for an online player
+> Upload a recording file and get a link for an online player:
 
 ```bash
 terminalizer share <recordingFile>
@@ -234,7 +234,7 @@ terminalizer share <recordingFile>
 
 ## Generate
 
-> Generate a web player for a recording file
+> Generate a web player for a recording file:
 
 ```bash
 terminalizer generate <recordingFile>
@@ -244,7 +244,7 @@ terminalizer generate <recordingFile>
 
 The default `config.yml` file is stored at root directory of the project. Execute the below command to copy it to your current directory.
 
-> Use any editor to edit the copied `config.yml`, then use the `-c` option to override the default one.
+> Use any editor to edit the copied `config.yml`, then use the `-c` option to override the default one:
 
 ```bash
 terminalizer config
@@ -421,7 +421,7 @@ frameBox:
 
 The default command that gets recorded for Linux is `bash -l`. You need to change the default command to `zsh`.
 
-* Generate a config file in the current directory
+* Generate a config file in the current directory:
 
 ```bash
 terminalizer config

@@ -20,7 +20,7 @@ function loadYAML(filePath) {
 
   var file = null;
 
-  // Rsolve the path into an absolute path
+  // Resolve the path into an absolute path
   filePath = di.path.resolve(filePath);
 
   // The file doesn't exist
@@ -74,7 +74,7 @@ function loadJSON(filePath) {
 
   var file = null;
 
-  // Rsolve the path into an absolute path
+  // Resolve the path into an absolute path
   filePath = di.path.resolve(filePath);
 
   // The file doesn't exist
@@ -144,7 +144,7 @@ function getDefaultConfig() {
  * Change a value for a specific key in YAML
  * 
  * - Works only with the first level keys
- * - Workds only with keys with a single value
+ * - Works only with keys with a single value
  * - Apply the changes on the json and raw
  *
  * @param {Object} data  {json, raw} 

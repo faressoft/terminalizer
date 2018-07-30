@@ -4,7 +4,7 @@
  * @author Mohammad Fares <faressoft.com@gmail.com>
  */
 
-var is = require('is_js');
+const is = require('is_js');
 
 /**
  * Dependencies
