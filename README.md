@@ -25,6 +25,7 @@ Built while listening to [Nyan Cat](https://www.youtube.com/watch?v=QH2-TGUlwu4)
 # Table of Contents
 
 * [Features](#features)
+* [What's Next](#whats-next)
 * [Installation](#installation)
 * [Getting Started](#getting-started)
 * [Compression](#compression)
@@ -78,6 +79,13 @@ Built while listening to [Nyan Cat](https://www.youtube.com/watch?v=QH2-TGUlwu4)
   * Line height.
   * Letter spacing.
   * Theme.
+
+# What's Next
+
+* Terminalizer on Cloud [terminalizer.com](https://terminalizer.com).
+* Global configurations at the home directory.
+* The `share` command to upload a recording file and get a link for an online player.
+* The `Generate` command to generate a web player for a recording file.
 
 # Installation
 
