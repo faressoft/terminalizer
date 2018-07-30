@@ -16,6 +16,12 @@ Built to be jusT cOol 👌🦄 !
 
 Built while listening to [Ever Felt Pt.1 - Otis McDonald](https://www.youtube.com/watch?v=-BiXhuRq7fU) 🎵 And [Nyan Cat](https://www.youtube.com/watch?v=QH2-TGUlwu4) 😛
 
+---
+
+<p align="center"><img src="/img/trending.png?raw=true"/></p>
+
+---
+
 # Table of Contents
 
 * [Features](#features)
