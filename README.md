@@ -97,11 +97,11 @@ npm install -g terminalizer
 
 <p align="center"><img src="/img/install.gif?raw=true"/></p>
 
-> Still facing an issue ? Check the [Issues](#issues) section or open a new issue.
+> Still facing an issue? Check the [Issues](#issues) section or open a new issue.
 
-If the installation failed, you may need to install the development tools to build the `C++` addons.
+If the installation failed, you may need to install the development tools to build the `C++` add-ons.
 
-⚠️ Terminalizer uses some `C++` addons that require building. Until we release the first stable version that will include prebuilt binaries for different OSs you may need to install some tools to build for now. Try the following, if they don't solve your installation issue, check [https://github.com/nodejs/node-gyp#installation](https://github.com/nodejs/node-gyp#installation).
+⚠️ Terminalizer uses some `C++` add-ons that require building. Until we release the first stable version that will include prebuilt binaries for different OSs you may need to install some tools to build for now. Try the following, if they don't solve your installation issue, check [https://github.com/nodejs/node-gyp#installation](https://github.com/nodejs/node-gyp#installation).
 
 For MacOS
 
@@ -256,7 +256,7 @@ terminalizer generate <recordingFile>
 
 # Configurations
 
-The default `config.yml` file is stored at root directory of the project. Execute the below command to copy it to your current directory.
+The default `config.yml` file is stored in the root directory of the project. Execute the below command to copy it to your current directory.
 
 > Use any editor to edit the copied `config.yml`, then use the `-c` option to override the default one.
 
