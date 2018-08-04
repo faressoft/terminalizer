@@ -17,3 +17,6 @@ node_modules
 
 # Optional npm cache directory
 .npm
+
+# VScode
+.vscode
