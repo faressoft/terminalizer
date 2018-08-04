@@ -38,7 +38,7 @@ function command(argv) {
 
   process.stdin.pause();
 
-  // Playing optinos
+  // Playing options
   var options = {
     frameDelay: argv.recordingFile.json.config.frameDelay,
     maxIdleTime: argv.recordingFile.json.config.maxIdleTime
@@ -80,7 +80,7 @@ function command(argv) {
  * - maxIdleTime (default: 2000)
  *   - Maximum delay between frames in ms
  *   - Ignored if the `frameDelay` isn't set to `auto`
- *   - Set to `auto` to prevnt limiting the max idle time
+ *   - Set to `auto` to prevent limiting the max idle time
  * 
  * - speedFactor (default: 1)
  *   - Multiply the frames delays by this factor

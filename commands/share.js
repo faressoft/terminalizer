@@ -22,7 +22,7 @@ function done() {
  */
 function command(argv) {
 
-  console.log('This command is not implemented yet. It will be avalible in the next versions');
+  console.log('This command is not implemented yet. It will be available in the next versions');
 
 }
 

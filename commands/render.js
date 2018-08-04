@@ -261,7 +261,7 @@ function command(argv) {
     maxIdleTime: config.maxIdleTime
   };
 
-  // For rendering the frames into PMG images
+  // For rendering the frames into PNG images
   var renderingOptions = {
     step: argv.step
   };
