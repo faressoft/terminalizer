@@ -55,7 +55,7 @@ frameBox:
 
 # Add a watermark image to the rendered gif
 # You need to specify an absolute path for
-# the image on your machine or a url, and you can also
+# the image on your machine or a URL, and you can also
 # add your own CSS styles
 watermark:
   imagePath: null
