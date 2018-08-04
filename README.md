@@ -99,7 +99,7 @@ npm install -g terminalizer
 
 > Still facing an issue? Check the [Issues](#issues) section or open a new issue.
 
-If the installation failed, you may need to install the development tools to build the `C++` add-ons.
+The installation should be very smooth with Node.js v9 or lower. For newer versions, if the installation is failed, you may need to install the development tools to build the `C++` add-ons.
 
 ⚠️ Terminalizer uses some `C++` add-ons that require building. Until we release the first stable version that will include prebuilt binaries for different OSs you may need to install some tools to build for now. Try the following, if they don't solve your installation issue, check [https://github.com/nodejs/node-gyp#installation](https://github.com/nodejs/node-gyp#installation).
 
