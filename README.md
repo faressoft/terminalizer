@@ -86,6 +86,7 @@ Built while listening to [Nyan Cat](https://www.youtube.com/watch?v=QH2-TGUlwu4)
 * Global configurations at the home directory.
 * The `share` command to upload a recording file and get a link for an online player.
 * The `Generate` command to generate a web player for a recording file.
+* Support `apt-get`, `yum`, `brew` installation.
 
 # Installation
 
@@ -99,51 +100,7 @@ npm install -g terminalizer
 
 > Still facing an issue? Check the [Issues](#issues) section or open a new issue.
 
-The installation should be very smooth with Node.js v9 or lower. For newer versions, if the installation is failed, you may need to install the development tools to build the `C++` add-ons.
-
-⚠️ Terminalizer uses some `C++` add-ons that require building. Until we release the first stable version that will include prebuilt binaries for different OSs you may need to install some tools to build for now. Try the following, if they don't solve your installation issue, check [https://github.com/nodejs/node-gyp#installation](https://github.com/nodejs/node-gyp#installation).
-
-For MacOS
-
-```bash
-xcode-select --install
-```
-
-For RHEL, CentOS, Scientific Linux, Fedora
-
-```bash
-yum update
-yum groupinstall "Development Tools"
-```
-
-For Debian, Ubuntu and derivatives
-
-```bash
-sudo apt-get update
-sudo apt-get install build-essential
-```
-
-For openSUSE/SUSE
-
-```bash
-zypper refresh
-zypper update
-zypper install -t pattern devel_C_C++
-```
-
-For Arch Linux and derivatives
-
-```bash
-sudo pacman -Syyu
-sudo pacman -S base-devel
-```
-
-Verifying Installation
-
-```bash
-gcc -v
-make -v
-```
+The installation should be very smooth with Node.js v10 or lower. For newer versions, if the installation is failed, you may need to install the development tools to build the `C++` add-ons. Check [node-gyp](https://github.com/nodejs/node-gyp#installation).
 
 # Getting Started
 
