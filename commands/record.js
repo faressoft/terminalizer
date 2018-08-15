@@ -178,7 +178,6 @@ function command(argv) {
 
   // PTY instance
   var ptyProcess = di.pty.spawn(command, commandArguments, {
-    name: 'xterm-color',
     cols: config.json.cols,
     rows: config.json.rows,
     cwd: config.json.pwd,
