@@ -47,27 +47,55 @@ function writeRecordingData(recordingFile) {
 }
 
 /**
+ * Read and parse a PNG image file
+ *
+ * @param  {String}  path the absolute path of the image
+ * @return {Promise} resolve with the parsed PNG image
+ */
+function loadPNG(path) {
+
+  return new Promise(function(resolve, reject) {
+
+    di.fs.readFile(path, function(error, imageData) {
+
+      if (error) {
+        return reject(error);
+      }
+
+      new di.PNG().parse(imageData, function(error, data) {
+
+        if (error) {
+          return reject(error);
+        }
+
+        resolve(data);
+
+      });
+      
+    });
+    
+  });
+
+}
+
+/**
  * Get the dimensions of the first rendered frame
  * 
  * @return {Promise}
  */
 function getFrameDimensions() {
 
-  return new Promise(function(resolve, reject) {
+  // The path of the first rendered frame
+  var framePath = di.path.join(ROOT_PATH, 'render/frames/0.png');
 
-    // The path of the first rendered frame
-    var framePath = di.path.join(ROOT_PATH, 'render/frames/0.png');
+  // Read and parse a PNG image file
+  return loadPNG(framePath).then(function(png) {
 
-    // Read and parse the image
-    di.fs.createReadStream(framePath).pipe(new di.PNG()).on('parsed', function() {
-
-      resolve({
-        width: this.width,
-        height: this.height
-      });
-
+    return({
+      width: png.width,
+      height: png.height
     });
-    
+  
   });
 
 }
@@ -169,7 +197,7 @@ function mergeFrames(records, options, frameDimensions) {
       var framePath = di.path.join(ROOT_PATH, 'render/frames', index + '.png');
 
       // Read and parse the rendered frame
-      di.fs.createReadStream(framePath).pipe(new di.PNG()).on('parsed', function() {
+      loadPNG(framePath).then(function(png) {
 
         progressBar.tick();
 
@@ -177,11 +205,15 @@ function mergeFrames(records, options, frameDimensions) {
         gif.setDelay(frame.delay);
 
         // Add frames
-        gif.addFrame(this.data);
+        gif.addFrame(png.data);
 
         // Next
         callback();
 
+      }).catch(function(error) {
+
+        callback(error);
+        
       });
 
     }, function(error) {
