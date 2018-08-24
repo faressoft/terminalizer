@@ -201,8 +201,10 @@ function mergeFrames(records, options, frameDimensions) {
 
         progressBar.tick();
 
-        // Set delay
-        gif.setDelay(frame.delay);
+        // Set the duration (the delay of the next frame)
+        // The % is used to take the delay of the first frame
+        // as the duration of the last frame
+        gif.setDelay(records[(index + 1) % framesCount].delay);
 
         // Add frames
         gif.addFrame(png.data);
