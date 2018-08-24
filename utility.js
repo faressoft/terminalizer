@@ -5,29 +5,54 @@
  */
 
 /**
- * Check, load, and parse YAML files
- *
- * - Add .yml extension when needed
+ * Check if a path represents a valid path for a file
  * 
+ * @param  {String}  filePath an absolute or a relative path
+ * @return {Boolean}
+ */
+function isFile(filePath) {
+
+  // Resolve the path into an absolute path
+  filePath = di.path.resolve(filePath);
+
+  try {
+
+    return di.fs.lstatSync(filePath).isFile();
+
+  } catch (error) {
+
+    return false;
+
+  }
+
+}
+
+/**
+ * Load a file's content
+ *
+ * - Check if the file exists, if not found check
+ *   if the file exists with appending the extension
+ *
  * Throws
  * - The provided file doesn't exit
- * - The provided file is not a valid YAML file
+ * - Any reading errors
  * 
- * @param  {String} filePath an absolute or a relative path
- * @return {Object}
+ * @param  {String} filePath  an absolute or a relative path
+ * @param  {String} extension
+ * @return {String}
  */
-function loadYAML(filePath) {
+function loadFile(filePath, extension) {
 
-  var file = null;
+  var content = null;
 
   // Resolve the path into an absolute path
   filePath = di.path.resolve(filePath);
 
   // The file doesn't exist
-  if (!di.fs.existsSync(filePath)) {
+  if (!isFile(filePath)) {
 
     // A file with .yml suffix also doesn't exist
-    if (!di.fs.existsSync(filePath + '.yml')) {
+    if (!isFile(filePath + '.' + extension)) {
       throw new Error('The provided file doesn\'t exit');
     } else {
       filePath = filePath + '.yml';
@@ -37,10 +62,31 @@ function loadYAML(filePath) {
 
   // Read the file
   try {
-    file = di.fs.readFileSync(filePath);
+    content = di.fs.readFileSync(filePath);
   } catch (error) {
     throw new Error(error);
   }
+
+  return content;
+
+}
+
+/**
+ * Check, load, and parse YAML files
+ *
+ * - Add .yml extension when needed
+ * 
+ * Throws
+ * - The provided file doesn't exit
+ * - The provided file is not a valid YAML file
+ * - Any reading errors
+ * 
+ * @param  {String} filePath an absolute or a relative path
+ * @return {Object}
+ */
+function loadYAML(filePath) {
+
+  var file = loadFile(filePath, 'yml');
 
   // Parse the file
   try {
@@ -66,28 +112,14 @@ function loadYAML(filePath) {
  * Throws
  * - The provided file doesn't exit
  * - The provided file is not a valid JSON file
+ * - Any reading errors
  * 
  * @param  {String} filePath an absolute or a relative path
  * @return {Object}
  */
 function loadJSON(filePath) {
 
-  var file = null;
-
-  // Resolve the path into an absolute path
-  filePath = di.path.resolve(filePath);
-
-  // The file doesn't exist
-  if (!di.fs.existsSync(filePath)) {
-
-    // A file with .json suffix also doesn't exist
-    if (!di.fs.existsSync(filePath + '.json')) {
-      throw new Error('The provided file doesn\'t exit');
-    } else {
-      filePath = filePath + '.json';
-    }
-
-  }
+  var file = loadFile(filePath, 'json');
 
   // Read the file
   try {
