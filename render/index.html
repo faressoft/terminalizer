@@ -3,7 +3,7 @@
 <head>
   <title>Terminalizer</title>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="../node_modules/xterm/dist/xterm.css">
+  <link rel="stylesheet" href="../lib/xterm.css">
   <link rel="stylesheet" href="../lib/terminalizer.css">
 
   <style type="text/css">
@@ -26,10 +26,12 @@
 
   <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
 
-  <script src="../node_modules/xterm/dist/xterm.js"></script>
-  <script src="../node_modules/jquery/dist/jquery.min.js"></script>
-  <script src="../node_modules/async/dist/async.min.js"></script>
-  <script src="../lib/terminalizer.js"></script>
+  <script>
+    window.Terminal = require('xterm/dist/xterm');
+    window.$ = window.jQuery = require('jquery/dist/jquery.min');
+    window.async = require('async/dist/async.min');
+    require('../lib/terminalizer.js')
+  </script>
 
   <script type="text/javascript">
 
