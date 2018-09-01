@@ -17,7 +17,7 @@ function isFile(filePath) {
 
   try {
 
-    return di.fs.lstatSync(filePath).isFile();
+    return di.fs.statSync(filePath).isFile();
 
   } catch (error) {
 
