@@ -161,14 +161,28 @@ function resolveFilePath(filePath, extension) {
 
 /**
  * Get the default configurations
+ *
+ * - Check if there is a global config file
+ *   - Found: Get the global config file
+ *   - Not Found: Get the default config file
  * 
  * @return {Object} {json, raw}
  */
 function getDefaultConfig() {
 
-  var filePath = di.path.join(__dirname, 'config.yml');
+  var defaultConfigPath = di.path.join(ROOT_PATH, 'config.yml');
+  var globalConfigPath = di.path.join(getGlobalDirectory(), 'config.yml');
 
-  return loadYAML(filePath);
+  // The global config file exists
+  if (isFile(globalConfigPath)) {
+    console.log('globalConfigPath');
+    return loadYAML(globalConfigPath);
+  }
+
+  console.log('defaultConfigPath');
+
+  // Load global config file
+  return loadYAML(defaultConfigPath);
 
 }
 
