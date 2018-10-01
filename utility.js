@@ -190,6 +190,20 @@ function changeYAMLValue(data, key, value) {
 
 }
 
+/**
+ * Get the path of the global data directory
+ *
+ * - For Windows, get the path of APPDATA
+ * - For Linux and MacOS, get the path of the home directory 
+ * 
+ * @return {String}
+ */
+function getGlobalDirectory() {
+
+  return di.path.join(process.env.APPDATA || process.env.HOME, '.terminalizer');
+
+}
+
 ////////////////////////////////////////////////////
 // Module //////////////////////////////////////////
 ////////////////////////////////////////////////////
@@ -199,5 +213,6 @@ module.exports = {
   loadJSON: loadJSON,
   resolveFilePath: resolveFilePath,
   getDefaultConfig: getDefaultConfig,
-  changeYAMLValue: changeYAMLValue
+  changeYAMLValue: changeYAMLValue,
+  getGlobalDirectory: getGlobalDirectory
 };
