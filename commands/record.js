@@ -223,9 +223,6 @@ module.exports.describe = 'Record your terminal and create a recording file';
  */
 module.exports.handler = function(argv) {
 
-  // The default configurations
-  var defaultConfig = di.utility.getDefaultConfig();
-
   // Default value for the config option
   if (typeof argv.config == 'undefined') {
     argv.config = di.utility.getDefaultConfig();
