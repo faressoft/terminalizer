@@ -86,14 +86,28 @@ yargs.command(require('./commands/init.js'))
      .command(require('./commands/share.js'))
      .command(require('./commands/generate.js'))
 
-/**
- * Print exceptions
- * 
- * @param {String} message
- */
-function errorHandler(message) {
+try {
 
-  console.error('Error: \n  ' + message + '\n');
+  // Parse the command line arguments
+  yargs.parse();
+
+} catch (error) {
+
+  // Print the error
+  errorHandler(error);
+
+}
+
+/**
+ * Print an error
+ * 
+ * @param {String|Error} error
+ */
+function errorHandler(error) {
+
+  error = error.toString();
+
+  console.error('Error: \n  ' + error + '\n');
   console.error('Hint:\n  Use the ' + chalk.green('--help') + ' option to get help about the usage');
   process.exit(1);
 
