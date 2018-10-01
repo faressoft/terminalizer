@@ -30,6 +30,7 @@ Built while listening to [Nyan Cat](https://www.youtube.com/watch?v=QH2-TGUlwu4)
 * [Getting Started](#getting-started)
 * [Compression](#compression)
 * [Usage](#usage)
+  * [Init](#init)
   * [Config](#config)
   * [Record](#record)
   * [Play](#play)
@@ -134,6 +135,14 @@ GIF compression is not implemented yet. For now we recommend [https://gifcompres
 terminalizer <command> [options]
 ```
 
+## Init
+
+> Create a global config directory
+
+```bash
+terminalizer init
+```
+
 ## Config
 
 > Generate a config file in the current directory
@@ -213,13 +222,21 @@ terminalizer generate <recordingFile>
 
 # Configurations
 
-The default `config.yml` file is stored in the root directory of the project. Execute the below command to copy it to your current directory.
+The default `config.yml` file is stored under the root directory of the project. Execute the below command to copy it to your current directory.
 
 > Use any editor to edit the copied `config.yml`, then use the `-c` option to override the default one.
 
 ```bash
 terminalizer config
 ```
+
+> RECOMMENDED, use the `init` command to create a global config file to be used instead of the default one.
+
+```bash
+terminalizer init
+```
+
+For Linux and MacOS, the created directory is located under the home directory `~/.terminalizer`. For Windows, it is located under the `AppData`.
 
 ## Recording
 
