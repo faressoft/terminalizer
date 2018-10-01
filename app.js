@@ -74,13 +74,17 @@ yargs.usage('Usage: $0 <command> [options]')
      .strict()
      // Set width to 90 cols
      .wrap(100)
-     // Automatically loads the commands
-     .commandDir('commands')
      // Handle failures
      .fail(errorHandler);
 
-// Parse the command line arguments
-var argv = yargs.parse();
+// Load commands
+yargs.command(require('./commands/init.js'))
+     .command(require('./commands/config.js'))
+     .command(require('./commands/record.js'))
+     .command(require('./commands/play.js'))
+     .command(require('./commands/render.js'))
+     .command(require('./commands/share.js'))
+     .command(require('./commands/generate.js'))
 
 /**
  * Print exceptions
