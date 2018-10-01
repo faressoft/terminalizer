@@ -26,7 +26,10 @@ function done() {
  */
 function command(argv) {
 
-  di.fs.copy(di.path.join(ROOT_PATH, 'config.yml'), 'config.yml', done);
+  // Copy the default config file
+  di.fs.copySync(di.path.join(ROOT_PATH, 'config.yml'), 'config.yml');
+
+  done();
 
 }
 
