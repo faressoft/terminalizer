@@ -154,9 +154,16 @@ function loadJSON(filePath) {
 }
 
 /**
- * Resolve a path and add an extension to the file name
+ * Resolve to an absolute path
+ *
+ * Accepts
+ *   - FileName
+ *   - FileName.ext
+ *   - /path/to/FileName
+ *   - /path/to/FileName.ext
  *
  * - Add the extension if not already added
+ * - Resolve to `/path/to/FileName.ext`
  * 
  * @param  {String} filePath  an absolute or a relative path
  * @param  {String} extension
