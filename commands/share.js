@@ -20,6 +20,24 @@ function done(url) {
 }
 
 /**
+ * Check if the value is not an empty value
+ *
+ * - Throw `Required field` if empty
+ * 
+ * @param  {String} input
+ * @return {Boolean}
+ */
+function isSet(input) {
+
+  if (!input) {
+    return new Error('Required field');
+  }
+
+  return true;
+
+}
+
+/**
  * The command's main function
  * 
  * @param {Object} argv
