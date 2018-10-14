@@ -38,6 +38,51 @@ function isSet(input) {
 }
 
 /**
+ * Get a token for uploading recordings
+ *
+ * - Check if already registered
+ *   - Yes: use the token
+ *   - No: Generate a new one and ask the user to register it
+ *
+ * @param  {Object}  context
+ * @return {Promise}
+ */
+function getToken(context) {
+
+  var token = di.utility.getToken();
+
+  // Already registered
+  if (token) {
+    return Promise.resolve(token);
+  }
+
+  token = di.utility.generateToken();
+
+  console.log('Open the following link in your browser and login into your account');
+  console.log(di.chalk.dim(BASEURL + '/token?token=' + token) + '\n');
+
+  // Continue action
+  return new Promise(function(resolve, reject) {
+
+    console.log('When you do it, press any key to continue');
+    process.stdin.setRawMode(true);
+    process.stdin.resume();
+
+    process.stdin.once('data', function handler() {
+
+      console.log(di.chalk.dim('Enjoy !') + '\n');
+      process.stdin.pause();
+      process.stdin.setRawMode(false);
+
+      resolve(token);
+
+    });
+    
+  });
+
+}
+
+/**
  * The command's main function
  * 
  * @param {Object} argv
