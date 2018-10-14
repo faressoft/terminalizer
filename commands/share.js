@@ -49,6 +49,23 @@ function command(argv) {
     require('./init.js').handler();
   }
 
+  di.Flowa.run({
+
+    // Get a token for uploading recordings
+    getToken: getToken,
+
+    // Ask the user to enter meta data about the recording
+    getMeta: getMeta,
+
+    // Upload the recording
+    shareRecording: shareRecording
+
+  }, argv).then(function(context) {
+  
+    done(context.shareRecording);
+  
+  }).catch(di.errorHandler);
+
 }
 
 ////////////////////////////////////////////////////
