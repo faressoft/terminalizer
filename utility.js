@@ -227,7 +227,7 @@ function changeYAMLValue(data, key, value) {
 }
 
 /**
- * Get the path of the global data directory
+ * Get the path of the global config directory
  *
  * - For Windows, get the path of APPDATA
  * - For Linux and MacOS, get the path of the home directory 
