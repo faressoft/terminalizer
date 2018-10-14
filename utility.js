@@ -236,7 +236,13 @@ function changeYAMLValue(data, key, value) {
  */
 function getGlobalDirectory() {
 
-  return di.path.join(process.env.APPDATA || process.env.HOME, '.terminalizer');
+  // Windows
+  if (typeof process.env.APPDATA != 'undefined') {
+    return di.path.join(process.env.APPDATA, 'terminalizer');
+  }
+
+  return di.path.join(process.env.HOME, '.terminalizer');
+
 
 }
 
