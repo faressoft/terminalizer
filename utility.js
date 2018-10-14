@@ -69,18 +69,11 @@ function loadFile(filePath, extension) {
   var content = null;
 
   // Resolve the path into an absolute path
-  filePath = di.path.resolve(filePath);
+  filePath = resolveFilePath(filePath, extension);
 
   // The file doesn't exist
   if (!isFile(filePath)) {
-
-    // A file with .yml suffix also doesn't exist
-    if (!isFile(filePath + '.' + extension)) {
-      throw new Error('The provided file doesn\'t exit');
-    } else {
-      filePath = filePath + '.yml';
-    }
-
+    throw new Error('The provided file doesn\'t exit');
   }
 
   // Read the file
