@@ -139,6 +139,80 @@ function getMeta(context) {
 }
 
 /**
+ * Upload the recording
+ *
+ * - If the token is rejected
+ *   - Delete the token
+ *   - Jump into the getToken task
+ *
+ * - Resolve with the url of the uploaded recording
+ * 
+ * @param  {Object}  context
+ * @return {Promise}
+ */
+function shareRecording(context) {
+
+  var self = this;
+  var token = context.getToken;
+  var meta = context.getMeta;
+  var recordingFile = context.recordingFile;
+  
+  var options = {
+    method: 'POST',
+    url: BASEURL + '/v1/recording',
+    formData: {
+      title: meta.title,
+      description: meta.description,
+      tags: meta.tags,
+      platform: meta.platform,
+      token: token,
+      file: {
+        value: di.fs.createReadStream(recordingFile),
+        options: {
+          filename: 'recording.yml',
+          contentType: 'application/x-yaml'
+        }
+      } 
+    }
+  };
+
+  return new Promise(function(resolve, reject) {
+
+    di.request(options, function(error, response, body) {
+
+      if (error) {
+        return reject(error);
+      }
+
+      // Parse the response body
+      body = JSON.parse(body);
+
+      // Internal server error
+      if (response.statusCode == 500) {
+        return reject(body.errors.join('\n'));
+      }
+
+      // Invalid input
+      if (response.statusCode == 400) {
+        return reject(body.errors.join('\n'));
+      }
+
+      // Invalid token
+      if (response.statusCode == 401) {
+        di.utility.removeToken();
+        self.jump('getToken');
+        return resolve();
+      }
+
+      resolve(body.url);
+
+    });
+
+  });
+
+}
+
+/**
  * The command's main function
  * 
  * @param {Object} argv
