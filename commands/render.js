@@ -347,11 +347,7 @@ function command(argv) {
 
     done(outputFile);
     
-  }).catch(function(error) {
-
-    di.errorHandler(error.message);
-    
-  });
+  }).catch(di.errorHandler);
 
 }
 
