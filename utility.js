@@ -198,7 +198,6 @@ function getDefaultConfig() {
 
   // The global config file exists
   if (isFile(globalConfigPath)) {
-    console.log('globalConfigPath');
     return loadYAML(globalConfigPath);
   }
 
