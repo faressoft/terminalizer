@@ -44,7 +44,10 @@ function isSet(input) {
  */
 function command(argv) {
 
-  console.log('This command is not implemented yet. It will be available in the next versions');
+  // No global config
+  if (!di.utility.isGlobalDirectoryCreated()) {
+    require('./init.js').handler();
+  }
 
 }
 
