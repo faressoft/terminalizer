@@ -243,6 +243,95 @@ function getGlobalDirectory() {
 
   return di.path.join(process.env.HOME, '.terminalizer');
 
+}
+
+/**
+ * Check if the global config directory is created
+ * 
+ * @return {Boolean}
+ */
+function isGlobalDirectoryCreated() {
+
+  var globalDirPath = getGlobalDirectory();
+
+  return isDir(globalDirPath);
+
+}
+
+/**
+ * Generate and save a token to be used for uploading recordings
+ * 
+ * @param  {String} token
+ * @return {String}
+ */
+function generateToken(token) {
+
+  var token = di.uuid.v4();
+  var globalDirPath = getGlobalDirectory();
+  var tokenPath = di.path.join(globalDirPath, 'token.txt');
+
+  di.fs.writeFileSync(tokenPath, token, 'utf8');
+
+  return token;
+
+}
+
+/**
+ * Get registered token for uploading recordings
+ * 
+ * @return {String|Null}
+ */
+function getToken() {
+
+  var globalDirPath = getGlobalDirectory();
+  var tokenPath = di.path.join(globalDirPath, 'token.txt');
+
+  // The file doesn't exist
+  if (!isFile(tokenPath)) {
+    return null;
+  }
+
+  return di.fs.readFileSync(tokenPath, 'utf8');
+
+}
+
+/**
+ * Remove a registered token
+ */
+function removeToken() {
+
+  var globalDirPath = getGlobalDirectory();
+  var tokenPath = di.path.join(globalDirPath, 'token.txt');
+
+  // The file doesn't exist
+  if (!isFile(tokenPath)) {
+    return;
+  }
+
+  di.fs.unlinkSync(tokenPath);
+
+}
+
+/**
+ * Get the name of the current OS
+ * 
+ * @return {String} mac, windows, linux
+ */
+function getOS() {
+
+  // MacOS
+  if (di.os.platform() == 'darwin') {
+
+    return 'mac';
+
+  // Windows
+  } else if (di.os.platform() == 'win32') {
+
+    return 'windows';
+
+  }
+
+  return 'linux';
 
 }
 
@@ -256,5 +345,10 @@ module.exports = {
   resolveFilePath: resolveFilePath,
   getDefaultConfig: getDefaultConfig,
   changeYAMLValue: changeYAMLValue,
-  getGlobalDirectory: getGlobalDirectory
+  getGlobalDirectory: getGlobalDirectory,
+  isGlobalDirectoryCreated: isGlobalDirectoryCreated,
+  generateToken: generateToken,
+  getToken: getToken,
+  removeToken: removeToken,
+  getOS: getOS
 };
