@@ -7,10 +7,14 @@
 
 /**
  * Executed after the command completes its task
+ *
+ * @param {String} url the url of the uploaded recording
  */
-function done() {
+function done(url) {
 
-  // Terminate the app
+  console.log(di.chalk.green('Successfully Uploaded'));
+  console.log('The recording is available on the link:');
+  console.log(di.chalk.magenta(url));
   process.exit();
 
 }
