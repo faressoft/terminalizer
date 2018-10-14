@@ -59,7 +59,7 @@ module.exports.builder = function(yargs) {
   yargs.positional('recordingFile', {
     describe: 'the recording file',
     type: 'string',
-    coerce: di.utility.loadYAML
+    coerce: di._.partial(di.utility.resolveFilePath, di._, 'yml')
   });
 
 };
