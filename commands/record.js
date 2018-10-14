@@ -137,10 +137,13 @@ function done() {
 
   // Store the data into the recording file
   try {
+
     di.fs.writeFileSync(recordingFile, outputYAML, 'utf8');
+
   } catch (error) {
-    di.errorHandler(error.message);
-    process.exit();
+
+    return di.errorHandler(error);
+
   }
 
   console.log(di.chalk.green('Successfully Recorded'));
