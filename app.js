@@ -10,6 +10,7 @@ var yargs         = require('yargs'),
     _             = require('lodash'),
     async         = require('async'),
     asyncPromises = require('async-promises'),
+    request       = require('request'),
     death         = require('death'),
     stringArgv    = require('string-argv'),
     path          = require('path'),
@@ -17,6 +18,9 @@ var yargs         = require('yargs'),
     GIFEncoder    = require('gif-encoder'),
     PNG           = require('pngjs').PNG,
     yaml          = require('js-yaml'),
+    uuid          = require('uuid'),
+    Flowa         = require('flowa'),
+    inquirer      = require('inquirer'),
     os            = require('os'),
     spawn         = require('child_process').spawn,
     electron      = require('electron'),
@@ -41,6 +45,7 @@ di.set('chalk', chalk);
 di.set('_', _);
 di.set('async', async);
 di.set('asyncPromises', asyncPromises);
+di.set('request', request);
 di.set('death', death);
 di.set('stringArgv', stringArgv);
 di.set('path', path);
@@ -55,7 +60,10 @@ di.set('pty', pty);
 di.set('fs', fs);
 di.set('now', now);
 di.set('fs', fs);
+di.set('Flowa', Flowa);
+di.set('inquirer', inquirer);
 di.set('yaml', yaml);
+di.set('uuid', uuid);
 di.set('utility', utility);
 di.set('play', play);
 di.set('errorHandler', errorHandler);
