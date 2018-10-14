@@ -18,9 +18,6 @@ function done() {
   console.log(di.chalk.green('The global config directory is created at'));
   console.log(di.chalk.magenta(di.utility.getGlobalDirectory()));
 
-  // Terminate the app
-  process.exit();
-
 }
 
 /**
