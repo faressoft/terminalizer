@@ -39,6 +39,9 @@ global.di = di;
 // Define the the root path of the app as a global constant
 global.ROOT_PATH = __dirname;
 
+// The base url of the Terminalizer website
+global.BASEURL = 'https://terminalizer.com';
+
 // Dependency Injection
 di.set('is', is);
 di.set('chalk', chalk);
