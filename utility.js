@@ -28,6 +28,29 @@ function isFile(filePath) {
 }
 
 /**
+ * Check if a path represents a valid path for a directory
+ * 
+ * @param  {String}  dirPath an absolute or a relative path
+ * @return {Boolean}
+ */
+function isDir(dirPath) {
+
+  // Resolve the path into an absolute path
+  dirPath = di.path.resolve(dirPath);
+
+  try {
+
+    return di.fs.statSync(dirPath).isDirectory();
+
+  } catch (error) {
+
+    return false;
+
+  }
+
+}
+
+/**
  * Load a file's content
  *
  * - Check if the file exists, if not found check
