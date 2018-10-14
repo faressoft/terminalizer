@@ -83,6 +83,62 @@ function getToken(context) {
 }
 
 /**
+ * Ask the user to enter meta data about the recording
+ *
+ * - Skip the task if already executed before
+ *   and resolve with the last result
+ *
+ * @param  {Object}  context
+ * @return {Promise}
+ */
+function getMeta(context) {
+
+  var platform = di.utility.getOS();
+
+  // Already executed
+  if (typeof context.getMeta != 'undefined') {
+    return Promise.resolve(context.getMeta);
+  }
+
+  console.log('Please enter some details about your recording');
+
+  return di.inquirer.prompt([
+    {
+      type: 'input',
+      name: 'title',
+      message: 'Title',
+      validate: isSet
+    },
+    {
+      type: 'input',
+      name: 'description',
+      message: 'Description',
+      validate: isSet
+    },
+    {
+      type: 'input',
+      name: 'tags',
+      message: 'Tags ' + di.chalk.dim('such as git,bash,game'),
+      validate: isSet,
+      default: platform
+    }
+  ]).then(function(answers) {
+
+    var params = Object.assign({}, answers);
+
+    // Add the platform
+    params.platform = platform;
+
+    // Print a new line
+    console.log();
+
+    return params;
+
+  });
+
+}
+
+/**
  * The command's main function
  * 
  * @param {Object} argv
