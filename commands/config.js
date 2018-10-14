@@ -14,9 +14,6 @@ function done() {
   console.log('The config file is saved into the file:');
   console.log(di.chalk.magenta('config.yml'));
 
-  // Terminate the app
-  process.exit();
-
 }
 
 /**
