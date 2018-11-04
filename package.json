@@ -13,7 +13,7 @@
     "terminalizer": "bin/app.js"
   },
   "scripts": {
-    "dev": "NODE_ENV=development webpack --watch",
+    "dev": "NODE_ENV=development webpack --colors --watch",
     "build": "NODE_ENV=production webpack --optimize-minimize --progress --colors",
     "prepublish": "npm run build"
   },
