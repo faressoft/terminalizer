@@ -1,0 +1,15 @@
+/**
+ * Terminalizer
+ * 
+ * @author Mohammad Fares <faressoft.com@gmail.com>
+ */
+
+body {
+  background-color: white;
+  margin: 0;
+}
+
+#terminal {
+  display: inline-block;
+  font-size: 0px;
+}
