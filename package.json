@@ -56,5 +56,16 @@
     "string-argv": "0.0.2",
     "uuid": "^3.3.2",
     "yargs": "^12.0.1"
+  },
+  "devDependencies": {
+    "ajv": "^6.5.4",
+    "clean-webpack-plugin": "^0.1.19",
+    "css-loader": "^1.0.0",
+    "jquery": "^3.3.1",
+    "mini-css-extract-plugin": "^0.4.2",
+    "terminalizer-player": "^0.2.3",
+    "webpack": "^4.19.0",
+    "webpack-cli": "^3.1.0",
+    "xterm": "^3.5.1"
   }
 }
