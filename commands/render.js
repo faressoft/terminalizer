@@ -122,7 +122,7 @@ function renderFrames(records, options) {
 
     render.stderr.on('data', function(error) {
       render.kill();
-      reject(new Error(di._.trim(error)));
+      reject(new Error(error));
     });
 
     render.stdout.on('data', function(data) {
