@@ -36,53 +36,66 @@ $(document).ready(function() {
   $('#terminal').terminalizer({
     recordingFile: 'data.json',
     autoplay: true,
-    controls: false,
+    controls: false
   });
 
   /**
    * A callback function for the event:
    * When the terminal playing is started
    */
-  $('#terminal').on('playingStarted', function() {
+  $('#terminal').one('playingStarted', function() {
 
     var terminalizer = $('#terminal').data('terminalizer');
-    var framesCount = terminalizer.getFramesCount();
-    var tasks = [];
 
+    // Pause the playing
     terminalizer.pause();
 
-    for (var i = 0; i < framesCount; i++) {
+  });
 
-      (function(frameIndex) {
+  /**
+   * A callback function for the event:
+   * When the terminal playing is paused
+   */
+  $('#terminal').one('playingPaused', function() {
 
-        tasks.push(function(callback) {
+    var terminalizer = $('#terminal').data('terminalizer');
 
-          terminalizer._applySnapshot(terminalizer._snapshots[frameIndex]);
+    // Reset the terminal
+    terminalizer._terminal.reset();
 
-          // A workaround delay to allow rendering
-          setTimeout(function() {
-            capture(frameIndex, callback);
-          }, 20);
-          
-        });
+    // When the terminal's reset is done 
+    $('#terminal').one('rendered', render);
 
-      }(i));
-
-    }
-
-    async.series(tasks, function(error, result) {
-
-      if (error) {
-        throw new Error(error);
-      }
-
-      currentWindow.close();
-      
-    });
-    
   });
 
 });
+
+/**
+ * Render each frame and capture it
+ */
+function render() {
+
+  var terminalizer = $('#terminal').data('terminalizer');
+  var framesCount = terminalizer.getFramesCount();
+
+  // Foreach frame
+  async.timesSeries(framesCount, function(frameIndex, next) {
+
+    terminalizer._renderFrame(frameIndex, true, function() {
+      capture(frameIndex, next);
+    })
+
+  }, function(error) {
+
+    if (error) {
+      throw new Error(error);
+    }
+
+    currentWindow.close();
+    
+  });
+
+}
 
 /**
  * Capture the current frame

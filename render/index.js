@@ -41,7 +41,11 @@ app.on('ready', createWindow);
 function createWindow() {
 
   // Create a browser window
-  var win = new BrowserWindow({show: false, width: 8000, height: 8000});
+  var win = new BrowserWindow({
+    show: false,
+    width: 8000,
+    height: 8000
+  });
 
   // Load index.html 
   win.loadURL('file://' + __dirname + '/index.html');
