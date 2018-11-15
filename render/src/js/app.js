@@ -83,7 +83,7 @@ function render() {
 
     terminalizer._renderFrame(frameIndex, true, function() {
       capture(frameIndex, next);
-    })
+    });
 
   }, function(error) {
 
