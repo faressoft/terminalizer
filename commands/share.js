@@ -184,9 +184,6 @@ function shareRecording(context) {
         return reject(error);
       }
 
-      // Parse the response body
-      body = JSON.parse(body);
-
       // Internal server error
       if (response.statusCode == 500) {
         return reject(body.errors.join('\n'));
@@ -203,6 +200,14 @@ function shareRecording(context) {
         self.jump('getToken');
         return resolve();
       }
+
+      // Unexpected error
+      if (response.statusCode != 200) {
+        return reject(new Error('Something went wrong, try again later'));
+      }
+
+      // Parse the response body
+      body = JSON.parse(body);
 
       resolve(body.url);
 
