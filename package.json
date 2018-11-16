@@ -5,6 +5,7 @@
   "main": "bin/app.js",
   "author": "Mohammad Fares <faressoft.com@gmail.com>",
   "license": "MIT",
+  "homepage": "http://terminalizer.com",
   "repository": {
     "type": "git",
     "url": "https://github.com/faressoft/terminalizer.git"
