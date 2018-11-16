@@ -6,7 +6,7 @@
 [![Unicorn](https://img.shields.io/badge/nyancat-approved-ff69b4.svg)](https://www.youtube.com/watch?v=QH2-TGUlwu4)
 [![Tweet](https://img.shields.io/badge/twitter-share-76abec.svg)](https://goo.gl/QJzJu1)
 
-> Record your terminal and generate animated gif images
+> Record your terminal and generate animated gif images or share a web player
 
 <p align="center"><img src="/img/demo.gif?raw=true"/></p>
 
