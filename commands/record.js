@@ -149,10 +149,20 @@ function done() {
   console.log(di.chalk.green('Successfully Recorded'));
   console.log('The recording data is saved into the file:');
   console.log(di.chalk.magenta(recordingFile));
-  console.log('You can edit the file and even change the configurations.');
+  console.log('You can edit the file and even change the configurations.\n');
 
-  // Terminate the app
-  process.exit();
+  console.log(di.chalk.green('Let\'s now share your recording on https://terminalizer.com'));
+  console.log('The command ' + di.chalk.magenta('`terminalizer share`') + 'can be used anytime to share recordings!\n');
+
+  // Reset STDIN
+  process.stdin.removeAllListeners();
+  process.stdin.setRawMode(false);
+  process.stdin.pause();
+
+  // Invoke the share command
+  di.commands.share.handler({
+    recordingFile: recordingFile
+  });
 
 }
 
@@ -196,8 +206,8 @@ function command(argv) {
   process.stdin.on('data', ptyProcess.write.bind(ptyProcess));
 
   // Input and output normalization
-  process.stdin.setEncoding('utf8');
   process.stdout.setDefaultEncoding('utf8');
+  process.stdin.setEncoding('utf8');
   process.stdin.setRawMode(true);
   process.stdin.resume();
 
