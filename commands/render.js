@@ -332,7 +332,7 @@ function command(argv) {
     di._.partial(renderFrames, records, renderingOptions),
 
     // Adjust frames delays
-    di._.partial(di.play.adjustFramesDelays, records, adjustFramesDelaysOptions),
+    di._.partial(di.commands.play.adjustFramesDelays, records, adjustFramesDelaysOptions),
 
     // Get the dimensions of the first rendered frame
     di._.partial(getFrameDimensions),

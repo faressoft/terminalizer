@@ -4,37 +4,14 @@
  * @author Mohammad Fares <faressoft.com@gmail.com>
  */
 
-var yargs         = require('yargs'),
-    is            = require('is_js'),
-    chalk         = require('chalk'),
-    _             = require('lodash'),
-    async         = require('async'),
-    asyncPromises = require('async-promises'),
-    request       = require('request'),
-    death         = require('death'),
-    stringArgv    = require('string-argv'),
-    path          = require('path'),
-    ProgressBar   = require('progress'),
-    GIFEncoder    = require('gif-encoder'),
-    PNG           = require('pngjs').PNG,
-    yaml          = require('js-yaml'),
-    uuid          = require('uuid'),
-    Flowa         = require('flowa'),
-    inquirer      = require('inquirer'),
-    os            = require('os'),
-    spawn         = require('child_process').spawn,
-    electron      = require('electron'),
-    deepmerge     = require('deepmerge'),
-    pty           = require('node-pty-prebuilt'),
-    fs            = require('fs-extra'),
-    now           = require('performance-now');
-var package       = require('./package.json'),
-    utility       = require('./utility.js'),
-    di            = require('./di.js'),
-    play          = require('./commands/play.js');
+var yargs = require('yargs'),
+    requireDir = require('require-dir');
+var package = require('./package.json'),
+    commands = requireDir('./commands'),
+    DI = require('./di.js');
 
 // Define the DI as a global object
-global.di = di;
+global.di = new DI();
 
 // Define the the root path of the app as a global constant
 global.ROOT_PATH = __dirname;
@@ -43,32 +20,32 @@ global.ROOT_PATH = __dirname;
 global.BASEURL = 'https://terminalizer.com';
 
 // Dependency Injection
-di.set('is', is);
-di.set('chalk', chalk);
-di.set('_', _);
-di.set('async', async);
-di.set('asyncPromises', asyncPromises);
-di.set('request', request);
-di.set('death', death);
-di.set('stringArgv', stringArgv);
-di.set('path', path);
-di.set('ProgressBar', ProgressBar);
-di.set('GIFEncoder', GIFEncoder);
-di.set('PNG', PNG);
-di.set('os', os);
-di.set('spawn', spawn);
-di.set('electron', electron);
-di.set('deepmerge', deepmerge);
-di.set('pty', pty);
-di.set('fs', fs);
-di.set('now', now);
-di.set('fs', fs);
-di.set('Flowa', Flowa);
-di.set('inquirer', inquirer);
-di.set('yaml', yaml);
-di.set('uuid', uuid);
-di.set('utility', utility);
-di.set('play', play);
+di.require('chalk');
+di.require('async');
+di.require('request');
+di.require('death');
+di.require('path');
+di.require('os');
+di.require('electron');
+di.require('deepmerge');
+di.require('uuid');
+di.require('is_js', 'is');
+di.require('lodash', '_');
+di.require('fs-extra', 'fs');
+di.require('flowa', 'Flowa');
+di.require('js-yaml', 'yaml');
+di.require('node-pty-prebuilt', 'pty');
+di.require('performance-now', 'now');
+di.require('async-promises', 'asyncPromises');
+di.require('string-argv', 'stringArgv');
+di.require('progress', 'ProgressBar');
+di.require('gif-encoder', 'GIFEncoder');
+di.require('inquirer');
+
+di.set('PNG', require('pngjs').PNG);
+di.set('spawn', require('child_process').spawn);
+di.set('utility', require('./utility.js'));
+di.set('commands', commands);
 di.set('errorHandler', errorHandler);
 
 // Initialize yargs
@@ -89,13 +66,15 @@ yargs.usage('Usage: $0 <command> [options]')
      .fail(errorHandler);
 
 // Load commands
-yargs.command(require('./commands/init.js'))
-     .command(require('./commands/config.js'))
-     .command(require('./commands/record.js'))
-     .command(require('./commands/play.js'))
-     .command(require('./commands/render.js'))
-     .command(require('./commands/share.js'))
-     .command(require('./commands/generate.js'))
+yargs.command(commands.init)
+     .command(commands.config)
+     .command(commands.record)
+     .command(commands.play)
+     .command(commands.render)
+     .command(commands.share)
+     .command(commands.generate)
+
+debugger;
 
 try {
 
@@ -119,7 +98,7 @@ function errorHandler(error) {
   error = error.toString();
 
   console.error('Error: \n  ' + error + '\n');
-  console.error('Hint:\n  Use the ' + chalk.green('--help') + ' option to get help about the usage');
+  console.error('Hint:\n  Use the ' + di.chalk.green('--help') + ' option to get help about the usage');
   process.exit(1);
 
 }
