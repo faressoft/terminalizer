@@ -193,7 +193,7 @@ function command(argv) {
   var ptyProcess = di.pty.spawn(command, commandArguments, {
     cols: config.json.cols,
     rows: config.json.rows,
-    cwd: config.json.pwd,
+    cwd: config.json.cwd,
     env: di.deepmerge(process.env, config.json.env)
   });
 
