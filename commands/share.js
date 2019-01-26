@@ -68,7 +68,12 @@ function getToken(context) {
     process.stdin.setRawMode(true);
     process.stdin.resume();
 
-    process.stdin.once('data', function handler() {
+    process.stdin.once('data', function handler(data) {
+
+      // Check if CTRL+C is pressed to exit
+      if (data == '\u0003' || data == '\u0003') {
+        process.exit();
+      }
 
       console.log(di.chalk.dim('Enjoy !') + '\n');
       process.stdin.pause();
