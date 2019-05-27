@@ -1,3 +1,5 @@
+<p align="center"><img src="/img/logo.svg?raw=true" width="200"/></p>
+
 # Terminalizer
 
 [![npm](https://img.shields.io/npm/v/terminalizer.svg)](https://www.npmjs.com/package/terminalizer)
