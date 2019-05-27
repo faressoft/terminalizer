@@ -1,4 +1,4 @@
-<p align="center"><img src="/img/logo.svg?raw=true" width="200"/></p>
+<p align="center"><img src="/img/logo.png?raw=true" width="200"/></p>
 
 # Terminalizer
 
