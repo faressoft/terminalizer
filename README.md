@@ -104,7 +104,15 @@ npm install -g terminalizer
 
 > Still facing an issue? Check the [Issues](#issues) section or open a new issue.
 
-The installation should be very smooth with Node.js v10 or lower. For newer versions, if the installation is failed, you may need to install the development tools to build the `C++` add-ons. Check [node-gyp](https://github.com/nodejs/node-gyp#installation).
+The installation should be very smooth with Node.js v10 or lower. For newer versions, if the installation is failed, you may need to install the development tools to build the `C++` add-ons. Check [node-gyp](https://github.com/nodejs/node-gyp#installation). Or follow these commands!
+
+```bash
+npm i -g n
+sudo n 8.11.1
+# Now it works
+# then
+sudo n 10.16.3
+```
 
 # Getting Started
 
