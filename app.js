@@ -37,7 +37,7 @@ di.require('js-yaml', 'yaml');
 di.require('node-pty-prebuilt', 'pty');
 di.require('performance-now', 'now');
 di.require('async-promises', 'asyncPromises');
-di.require('string-argv', 'stringArgv');
+di.require('string-argv', 'stringArgv', 'default');
 di.require('progress', 'ProgressBar');
 di.require('gif-encoder', 'GIFEncoder');
 di.require('inquirer');

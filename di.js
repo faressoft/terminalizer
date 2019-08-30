@@ -85,7 +85,7 @@ DI.prototype.setHandler = function(target, key, value) {
  * @param {String} moduleName
  * @param {String} key        (Optional) (Default: the moduleName camel cased)
  */
-DI.prototype.require = function(moduleName, key) {
+DI.prototype.require = function(moduleName, key, subElement) {
 
   var parsedModuleName = path.parse(moduleName);
 
@@ -102,7 +102,8 @@ DI.prototype.require = function(moduleName, key) {
 
   }
 
-  this._dependencies[key] = require(moduleName);
+  var theModule = require(moduleName);
+  this._dependencies[key] = subElement ? theModule[subElement] : theModule;
 
 };
 
