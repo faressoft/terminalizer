@@ -120,9 +120,16 @@ function renderFrames(records, options) {
     // Execute the rendering process
     var render = di.spawn(di.electron, [di.path.join(ROOT_PATH, 'render/index.js'), options.step], {detached: false});
 
-    render.stderr.on('data', function(error) {
-      render.kill();
-      reject(new Error(error));
+    render.stderr.on('data', function (error) {
+      var errorString = error.toString();
+      var lines = errorString.split(/\r?\n/g);
+      // Explicitly ignore lines saying "gtk-warning" - they should not
+      // kill the rendering process. Also ignore empty lines.
+      var errorLines = lines.filter(l => !(/gtk-warning|^$/i.test(l)));
+      if (errorLines.length > 0) {
+        render.kill();
+        reject(new Error(errorLines.join('\n')));
+      }
     });
 
     render.stdout.on('data', function(data) {
