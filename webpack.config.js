@@ -3,7 +3,7 @@ const path = require('path');
 
 // Extract CSS into separate files
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 // Global variables
 const globals = {
@@ -26,7 +26,7 @@ module.exports = {
     publicPath: '/dist/'
   },
   plugins: [
-    new CleanWebpackPlugin(['./render/dist'], {verbose: false}),
+    new CleanWebpackPlugin({verbose: false}),
     new webpack.ProvidePlugin(globals),
     new MiniCssExtractPlugin({filename: 'css/[name].css'}),
     new webpack.NoEmitOnErrorsPlugin()
