@@ -158,11 +158,7 @@ function done() {
   process.stdin.removeAllListeners();
   process.stdin.setRawMode(false);
   process.stdin.pause();
-
-  // Invoke the share command
-  di.commands.share.handler({
-    recordingFile: recordingFile
-  });
+  process.exit();
 
 }
 
