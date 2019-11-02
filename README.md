@@ -94,7 +94,9 @@ Built while listening to [Nyan Cat](https://www.youtube.com/watch?v=QH2-TGUlwu4)
 
 # Installation
 
-You need to install [Node.js](https://nodejs.org/en/download/) first, then install the tool globally using this command:
+## Dependencies
+
+* [Node.js](https://nodejs.org/en/download/) <= v10
 
 ```bash
 npm install -g terminalizer
