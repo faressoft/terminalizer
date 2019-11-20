@@ -44,7 +44,10 @@ function createWindow() {
   var win = new BrowserWindow({
     show: false,
     width: 8000,
-    height: 8000
+    height: 8000,
+    webPreferences: {
+      nodeIntegration: true
+    }
   });
 
   // Load index.html 

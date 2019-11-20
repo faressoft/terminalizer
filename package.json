@@ -46,7 +46,7 @@
     "chalk": "^2.4.1",
     "death": "^1.1.0",
     "deepmerge": "^2.1.0",
-    "electron": "^2.0.8",
+    "electron": "^7.1.2",
     "flowa": "^4.0.2",
     "fs-extra": "^5.0.0",
     "gif-encoder": "^0.6.1",

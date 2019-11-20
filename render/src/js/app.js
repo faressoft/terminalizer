@@ -116,14 +116,18 @@ function capture(frameIndex, callback) {
 
   stepsCounter = (stepsCounter + 1) % step;
 
-  capturePage(captureRect, function(img) {
-
+  capturePage(captureRect).then((img) => {
+  
     var outputPath = path.join(renderDir, frameIndex + '.png');
-
+  
     fs.writeFileSync(outputPath, img.toPNG());
     ipcRenderer.send('captured', frameIndex);
     callback();
-
+  
+  }).catch((err) => {
+  
+    throw new err;    
+  
   });
 
 }
