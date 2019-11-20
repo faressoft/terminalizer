@@ -34,7 +34,6 @@ di.require('lodash', '_');
 di.require('fs-extra', 'fs');
 di.require('flowa', 'Flowa');
 di.require('js-yaml', 'yaml');
-di.require('node-pty-prebuilt', 'pty');
 di.require('performance-now', 'now');
 di.require('async-promises', 'asyncPromises');
 di.require('string-argv', 'stringArgv');
@@ -42,6 +41,7 @@ di.require('progress', 'ProgressBar');
 di.require('gif-encoder', 'GIFEncoder');
 di.require('inquirer');
 
+di.set('pty', require('@faressoft/node-pty-prebuilt'));
 di.set('PNG', require('pngjs').PNG);
 di.set('spawn', require('child_process').spawn);
 di.set('utility', require('./utility.js'));
