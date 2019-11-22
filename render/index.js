@@ -24,9 +24,6 @@ global.step = process.argv[2] || 1;
  */
 global.renderDir = path.join(__dirname, 'frames');
 
-// Set the display scale factor to 1
-app.commandLine.appendSwitch('force-device-scale-factor', 1);
-
 // Hide the Dock for macOS
 if (os.platform() == 'darwin') {
   app.dock.hide();
