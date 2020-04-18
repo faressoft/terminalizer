@@ -119,8 +119,10 @@ function onData(content) {
 /**
  * Executed after the command completes its task
  * Store the output file with reserving the comments
+ * 
+ * @param {Object} argv
  */
-function done() {
+function done(argv) {
 
   var outputYAML = '';
 
@@ -149,19 +151,43 @@ function done() {
   console.log(di.chalk.green('Successfully Recorded'));
   console.log('The recording data is saved into the file:');
   console.log(di.chalk.magenta(recordingFile));
-  console.log('You can edit the file and even change the configurations.\n');
-
-  console.log(di.chalk.green('Let\'s now share your recording on https://terminalizer.com'));
-  console.log('The command ' + di.chalk.magenta('`terminalizer share`') + 'can be used anytime to share recordings!\n');
+  console.log('You can edit the file and even change the configurations.');
+  console.log(
+    "The command " +
+      di.chalk.magenta("`terminalizer share`") +
+      "can be used anytime to share recordings!"
+  );
 
   // Reset STDIN
-  process.stdin.removeAllListeners();
   process.stdin.setRawMode(false);
   process.stdin.pause();
 
-  // Invoke the share command
-  di.commands.share.handler({
-    recordingFile: recordingFile
+  if (argv.skipSharing) {
+    return
+  }
+
+  di.inquirer.prompt([
+    {
+      type: "confirm",
+      name: "share",
+      message: "Would you like to share your recording on terminalizer.com?",
+    },
+  ]).then(function(answers) {
+
+    if (!answers.share) {
+      return;
+    }
+
+    console.log(
+      di.chalk.green(
+        "Let's now share your recording on https://terminalizer.com"
+      )
+    );
+
+    // Invoke the share command
+    di.commands.share.handler({
+      recordingFile: recordingFile,
+    });
   });
 
 }
@@ -197,13 +223,18 @@ function command(argv) {
     env: di.deepmerge(process.env, config.json.env)
   });
 
+  var onInput = ptyProcess.write.bind(ptyProcess);
+
   console.log('The recording session is started');
   console.log('Press', di.chalk.green('CTRL+D'), 'to exit and save the recording');
 
   // Input and output capturing and redirection
+  process.stdin.on('data', onInput);
   ptyProcess.on('data', onData);
-  ptyProcess.on('exit', done);
-  process.stdin.on('data', ptyProcess.write.bind(ptyProcess));
+  ptyProcess.on('exit', function() {
+    process.stdin.removeListener('data', onInput);
+    done(argv);
+  });
 
   // Input and output normalization
   process.stdout.setDefaultEncoding('utf8');
@@ -276,6 +307,15 @@ module.exports.builder = function(yargs) {
     describe: 'The command to be executed',
     requiresArg: true,
     default: null
+  });
+
+  // Define the config option
+  yargs.option('k', {
+    alias: 'skip-sharing',
+    type: 'boolean',
+    describe: 'Skip sharing and showing the sharing prompt message',
+    requiresArg: false,
+    default: false
   });
 
   // Add examples

@@ -165,8 +165,9 @@ terminalizer record <recordingFile>
 Options
 
 ```
--c, --config   Overwrite the default configurations [string]
--d, --command  The command to be executed           [string] [default: null]
+-c, --config        Overwrite the default configurations                                  [string]
+-d, --command       The command to be executed                            [string] [default: null]
+-k, --skip-sharing  Skip sharing and showing the sharing prompt message [boolean] [default: false]
 ```
 
 Examples
