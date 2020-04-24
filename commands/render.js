@@ -114,15 +114,27 @@ function renderFrames(records, options) {
     // The number of frames
     var framesCount = records.length;
 
+    // Track execution time
+    var start = (new Date()).getTime();
+
     // Create a progress bar
     var progressBar = getProgressBar('Rendering', Math.ceil(framesCount / options.step));
+
+    // First try with GPU, on error try without GPU
+    var attemptedRenderWithoutGPU = false;
 
     // Execute the rendering process
     var render = di.spawn(di.electron, [di.path.join(ROOT_PATH, 'render/index.js'), options.step], {detached: false});
 
     render.stderr.on('data', function(error) {
-      render.kill();
-      reject(new Error(error));
+      if (!!error && !attemptedRenderWithoutGPU) {
+        console.log("Rendering failed, retrying with disabled GPU...");
+        render = di.spawn(di.electron, [di.path.join(ROOT_PATH, 'render/index.js'), options.step, '--disable-gpu'], {detached: false});
+        attemptedRenderWithoutGPU = true;
+      } else {
+        render.kill();
+        reject(new Error(error));
+      }
     });
 
     render.stdout.on('data', function(data) {
@@ -136,6 +148,7 @@ function renderFrames(records, options) {
 
       // Rendering is completed
       if (progressBar.complete) {
+        console.log("Finished rendering frames in " + ((new Date()).getTime() - start) + "ms.");
         resolve();
       }
 
