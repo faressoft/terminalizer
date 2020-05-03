@@ -115,29 +115,27 @@ function renderFrames(records, options) {
     var framesCount = records.length;
 
     // Track execution time
-    var start = (new Date()).getTime();
+    var start = Date.now();
 
     // Create a progress bar
     var progressBar = getProgressBar('Rendering', Math.ceil(framesCount / options.step));
 
-    // First try with GPU, on error try without GPU
+    // First try rendering with GPU, on error try without GPU
     var attemptedRenderWithoutGPU = false;
 
+    // Define rendering process spawning
+    var render = null;
+    function spawnRender(...args){
+      render = di.spawn(di.electron, [di.path.join(ROOT_PATH, 'render/index.js'), options.step, ...args], {detached: false});
+      render.stderr.on('data', onError);
+      render.stdout.on('data', onData);
+    }
+
     // Execute the rendering process
-    var render = di.spawn(di.electron, [di.path.join(ROOT_PATH, 'render/index.js'), options.step], {detached: false});
+    spawnRender();
 
-    render.stderr.on('data', function(error) {
-      if (!!error && !attemptedRenderWithoutGPU) {
-        console.log("Rendering failed, retrying with disabled GPU...");
-        render = di.spawn(di.electron, [di.path.join(ROOT_PATH, 'render/index.js'), options.step, '--disable-gpu'], {detached: false});
-        attemptedRenderWithoutGPU = true;
-      } else {
-        render.kill();
-        reject(new Error(error));
-      }
-    });
-
-    render.stdout.on('data', function(data) {
+    // Track progress of rendering through stdout
+    function onData(data) {
 
       // Is not a recordIndex (to skip Electron's logs or new lines)
       if (di.is.not.number(parseInt(data.toString()))) {
@@ -145,15 +143,31 @@ function renderFrames(records, options) {
       }
 
       progressBar.tick();
-
-      // Rendering is completed
       if (progressBar.complete) {
-        console.log("Finished rendering frames in " + ((new Date()).getTime() - start) + "ms.");
+        console.log('Finished rendering frames in ' + (Date.now() - start) + 'ms.');
         resolve();
       }
+    }
 
-    });
+    // React on rendering errors observed on its stderr
+    function onError(error) {
 
+      // First kill the rendering process
+      render.kill();
+
+      // Check for GPU error
+      if (!!error && error instanceof Buffer && error.toString('utf8').includes('GL_INVALID_OPERATION : glBufferData')) {
+        console.log('Rendering failed due to Electron error \'GL_INVALID_OPERATION: glBufferData\'!'); 
+        if (!attemptedRenderWithoutGPU) {
+          console.log('Retrying rendering with disabled GPU...');
+          attemptedRenderWithoutGPU = true;
+          return spawnRender('--disable-gpu');
+        }
+      }
+
+      // Finally reject renderFrames
+      reject(new Error(error));
+    }
   });
 
 }
@@ -300,7 +314,7 @@ function command(argv) {
   var framesCount = records.length;
 
   // The path of the output file
-  var outputFile = di.utility.resolveFilePath('render' + (new Date()).getTime(), 'gif');
+  var outputFile = di.utility.resolveFilePath('render' + Date.now(), 'gif');
 
   // For adjusting (calculating) the frames delays
   var adjustFramesDelaysOptions = {
