@@ -120,19 +120,11 @@ function renderFrames(records, options) {
     // Create a progress bar
     var progressBar = getProgressBar('Rendering', Math.ceil(framesCount / options.step));
 
-    // First try rendering with GPU, on error try without GPU
-    var attemptedRenderWithoutGPU = false;
-
-    // Define rendering process spawning
-    var render = null;
-    function spawnRender(...args){
-      render = di.spawn(di.electron, [di.path.join(ROOT_PATH, 'render/index.js'), options.step, ...args], {detached: false});
-      render.stderr.on('data', onError);
-      render.stdout.on('data', onData);
-    }
-
     // Execute the rendering process
-    spawnRender();
+    var render = di.spawn(di.electron, [di.path.join(ROOT_PATH, 'render/index.js'), options.step], {detached: false});
+    render.stdout.on('data', onData);
+    render.stderr.on('data', onError);
+    render.on('close', onClose); 
 
     // Track progress of rendering through stdout
     function onData(data) {
@@ -143,31 +135,29 @@ function renderFrames(records, options) {
       }
 
       progressBar.tick();
-      if (progressBar.complete) {
-        console.log('Finished rendering frames in ' + (Date.now() - start) + 'ms.');
-        resolve();
-      }
     }
 
-    // React on rendering errors observed on its stderr
+    // Track rendering errors observed on stderr
     function onError(error) {
 
-      // First kill the rendering process
-      render.kill();
-
-      // Check for GPU error
-      if (!!error && error instanceof Buffer && error.toString('utf8').includes('GL_INVALID_OPERATION : glBufferData')) {
-        console.log('Rendering failed due to Electron error \'GL_INVALID_OPERATION: glBufferData\'!'); 
-        if (!attemptedRenderWithoutGPU) {
-          console.log('Retrying rendering with disabled GPU...');
-          attemptedRenderWithoutGPU = true;
-          return spawnRender('--disable-gpu');
-        }
+      // If error is Buffer, print it, otherwise reject
+      if (!!error && error instanceof Buffer) {
+        console.log(di.chalk.yellow(error.toString('utf8')));
+      } else {
+        reject(new Error("Unknown error [" + typeof error + "]: " + error));
       }
+    } 
 
-      // Finally reject renderFrames
-      reject(new Error(error));
-    }
+    // React when rendering process finishes
+    function onClose(code) {
+      if (code !== 0) {
+        reject(new Error("Rendering exited with code " + code));
+      } else {
+        console.log(di.chalk.green('Finished rendering frames in ' + (Date.now() - start) + 'ms.'));
+        resolve();
+      }
+    };
+
   });
 
 }
@@ -186,6 +176,9 @@ function mergeFrames(records, options, frameDimensions) {
 
     // The number of frames
     var framesCount = records.length;
+    
+    // Track execution time
+    var start = Date.now();
 
     // Used for the step option
     var stepsCounter = 0;
@@ -253,6 +246,9 @@ function mergeFrames(records, options, frameDimensions) {
 
       // Write the footer
       gif.finish();
+      
+      // Finish
+      console.log(di.chalk.green('Finished merging frames in ' + (Date.now() - start) + 'ms.'));
       resolve();
 
     });
