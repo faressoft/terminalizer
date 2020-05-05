@@ -142,8 +142,9 @@ function renderFrames(records, options) {
 
       // If error is Buffer, print it, otherwise reject
       if (!!error && error instanceof Buffer) {
-        console.log(di.chalk.yellow(error.toString('utf8')));
+        console.log(di.chalk.yellow(`[render] ${error.toString('utf8').trim()}`));
       } else {
+        render.kill();
         reject(new Error("Unknown error [" + typeof error + "]: " + error));
       }
     } 
