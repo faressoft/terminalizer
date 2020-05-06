@@ -154,7 +154,12 @@ function renderFrames(records, options) {
       if (code !== 0) {
         reject(new Error("Rendering exited with code " + code));
       } else {
-        console.log(di.chalk.green('Finished rendering frames in ' + (Date.now() - start) + 'ms.'));
+        if (progressBar.complete) {
+          console.log(di.chalk.green('[render] Process successfully completed in ' + (Date.now() - start) + 'ms.'));
+        } else {
+          console.log(di.chalk.yellow('[render] Process completion unverified'));
+        }
+
         resolve();
       }
     };
@@ -249,7 +254,7 @@ function mergeFrames(records, options, frameDimensions) {
       gif.finish();
       
       // Finish
-      console.log(di.chalk.green('Finished merging frames in ' + (Date.now() - start) + 'ms.'));
+      console.log(di.chalk.green('[merge] Process successfully completed in ' + (Date.now() - start) + 'ms.'));
       resolve();
 
     });
