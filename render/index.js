@@ -11,6 +11,15 @@ var path          = require('path'),
     ipcMain       = require('electron').ipcMain,
     os            = require('os');
 
+
+/**
+ * Disable electron hardware acceleration if requested by environment.
+ * See https://stackoverflow.com/a/58351011/381166.
+ */
+if (process.env.ELECTRON_DISABLE_GPU) {
+  app.disableHardwareAcceleration();
+}
+
 /**
  * The step option
  * To reduce the number of rendered frames (step > 1)
