@@ -293,7 +293,7 @@ function command(argv) {
   var adjustFramesDelaysOptions = {
     frameDelay: config.frameDelay,
     maxIdleTime: config.maxIdleTime,
-    speedFactor: config.speedFactor
+    speedFactor: argv.speedFactor
   };
 
   // For rendering the frames into PNG images
