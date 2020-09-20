@@ -292,7 +292,8 @@ function command(argv) {
   // For adjusting (calculating) the frames delays
   var adjustFramesDelaysOptions = {
     frameDelay: config.frameDelay,
-    maxIdleTime: config.maxIdleTime
+    maxIdleTime: config.maxIdleTime,
+    speedFactor: config.speedFactor
   };
 
   // For rendering the frames into PNG images
@@ -413,4 +414,11 @@ module.exports.builder = function(yargs) {
     default: 1
   });
 
+  // Define the speed-factor option
+  yargs.option('f', {
+    alias: 'speed-factor',
+    describe: 'Speed factor, multiply the frames delays by this factor',
+    type: 'number',
+    default: 1.0
+  });
 };
