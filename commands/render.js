@@ -5,6 +5,12 @@
  * @author Mohammad Fares <faressoft.com@gmail.com>
  */
 
+const UPNG = require("@pdf-lib/upng").default;
+const fs = require("fs");
+const util = require("util");
+
+const readFilePromise = util.promisify(fs.readFile);
+
 /**
  * Create a progress bar for processing frames
  *
@@ -55,22 +61,10 @@ function writeRecordingData(recordingFile) {
  * @param  {String}  path the absolute path of the image
  * @return {Promise} resolve with the parsed PNG image
  */
-function loadPNG(path) {
-  return new Promise(function (resolve, reject) {
-    di.fs.readFile(path, function (error, imageData) {
-      if (error) {
-        return reject(error);
-      }
+async function loadPNG(path) {
+  const data = await readFilePromise(path);
 
-      new di.PNG().parse(imageData, function (error, data) {
-        if (error) {
-          return reject(error);
-        }
-
-        resolve(data);
-      });
-    });
-  });
+  return UPNG.decode(data);
 }
 
 /**
@@ -145,86 +139,51 @@ function renderFrames(records, options) {
  * @param  {Object}  frameDimensions {width, height}
  * @return {Promise}
  */
-function mergeFrames(records, options, frameDimensions) {
-  return new Promise(function (resolve, reject) {
-    // The number of frames
-    var framesCount = records.length;
+async function mergeFrames(records, options, frameDimensions) {
+  // The number of frames
+  var framesCount = records.length;
 
-    // Used for the step option
-    var stepsCounter = 0;
+  // Used for the step option
+  var stepsCounter = 0;
 
-    // Create a progress bar
-    var progressBar = getProgressBar(
-      "Merging",
-      Math.ceil(framesCount / options.step)
-    );
+  // Create a progress bar
+  var progressBar = getProgressBar(
+    "Loading",
+    Math.ceil(framesCount / options.step)
+  );
 
-    // The gif image
-    var gif = new di.GIFEncoder(frameDimensions.width, frameDimensions.height, {
-      highWaterMark: 5 * 1024 * 1024,
-    });
+  const imageData = [];
+  const delayData = [];
 
-    // Pipe
-    gif.pipe(di.fs.createWriteStream(options.outputFile));
+  for (let index = 0; index < records.length; index++) {
+    const record = records[0];
+    if (stepsCounter != 0) {
+      stepsCounter = (stepsCounter + 1) % options.step;
+      continue;
+    }
+    stepsCounter = (stepsCounter + 1) % options.step;
 
-    // Quality
-    gif.setQuality(101 - options.quality);
+    // The path of the rendered frame
+    var framePath = di.path.join(ROOT_PATH, "render/frames", index + ".png");
 
-    // Repeat
-    gif.setRepeat(options.repeat);
+    // Read and parse the rendered frame
+    const png = await loadPNG(framePath);
+    progressBar.tick();
+    imageData.push(png.data);
+    delayData.push(records[(index + 1) % framesCount].delay);
+  }
 
-    // Write the headers
-    gif.writeHeader();
+  console.log("Writing PNG file ...");
 
-    // Foreach frame
-    di.async.eachOfSeries(
-      records,
-      function (frame, index, callback) {
-        if (stepsCounter != 0) {
-          stepsCounter = (stepsCounter + 1) % options.step;
-          return callback();
-        }
+  const png = UPNG.encode(
+    imageData,
+    frameDimensions.width,
+    frameDimensions.height,
+    256,
+    delayData
+  );
 
-        stepsCounter = (stepsCounter + 1) % options.step;
-
-        // The path of the rendered frame
-        var framePath = di.path.join(
-          ROOT_PATH,
-          "render/frames",
-          index + ".png"
-        );
-
-        // Read and parse the rendered frame
-        loadPNG(framePath)
-          .then(function (png) {
-            progressBar.tick();
-
-            // Set the duration (the delay of the next frame)
-            // The % is used to take the delay of the first frame
-            // as the duration of the last frame
-            gif.setDelay(records[(index + 1) % framesCount].delay);
-
-            // Add frames
-            gif.addFrame(png.data);
-
-            // Next
-            callback();
-          })
-          .catch(function (error) {
-            callback(error);
-          });
-      },
-      function (error) {
-        if (error) {
-          return reject(error);
-        }
-
-        // Write the footer
-        gif.finish();
-        resolve();
-      }
-    );
-  });
+  fs.writeFileSync(options.outputFile, Buffer.from(png));
 }
 
 /**
@@ -251,7 +210,7 @@ function cleanup() {
  */
 function done(outputFile) {
   console.log("\n" + di.chalk.green("Successfully Rendered"));
-  console.log("The animated GIF image is saved into the file:");
+  console.log("The animated PNG image is saved into the file:");
   console.log(di.chalk.magenta(outputFile));
   process.exit();
 }
@@ -272,7 +231,7 @@ function command(argv) {
   // The path of the output file
   var outputFile = di.utility.resolveFilePath(
     "render" + new Date().getTime(),
-    "gif"
+    "png"
   );
 
   // For adjusting (calculating) the frames delays

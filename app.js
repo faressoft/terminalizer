@@ -42,7 +42,6 @@ di.require("gif-encoder", "GIFEncoder");
 di.require("inquirer");
 
 di.set("pty", require("@faressoft/node-pty-prebuilt"));
-di.set("PNG", require("pngjs").PNG);
 di.set("spawn", require("child_process").spawn);
 di.set("utility", require("./utility.js"));
 di.set("commands", commands);
@@ -92,9 +91,7 @@ try {
  * @param {String|Error} error
  */
 function errorHandler(error) {
-  error = error.toString();
-
-  console.error("Error: \n  " + error + "\n");
+  console.error("Error: " + (error.stack || error.toString()));
   console.error(
     "Hint:\n  Use the " +
       di.chalk.green("--help") +

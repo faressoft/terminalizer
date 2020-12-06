@@ -44,6 +44,7 @@
   ],
   "dependencies": {
     "@faressoft/node-pty-prebuilt": "^0.9.0",
+    "@pdf-lib/upng": "^1.0.1",
     "async": "^2.6.3",
     "async-promises": "^0.2.2",
     "chalk": "^2.4.2",
@@ -58,7 +59,6 @@
     "js-yaml": "^3.13.1",
     "lodash": "^4.17.15",
     "performance-now": "^2.1.0",
-    "pngjs": "^3.4.0",
     "progress": "^2.0.3",
     "request": "^2.88.2",
     "require-dir": "^1.1.0",
