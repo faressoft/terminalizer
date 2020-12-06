@@ -41,6 +41,11 @@ frameDelay: auto
 # Set to `auto` to prevent limiting the max idle time
 maxIdleTime: 2000
 
+# Delay for the very last frame in ms
+# Overrides `maxIdleTime` and `frameDelay` value for last frame
+# If the value is `auto` use the actual recording delay
+lastFrameDelay: auto
+
 # The surrounding frame box
 # The `type` can be null, window, floating, or solid`
 # To hide the title use the value null

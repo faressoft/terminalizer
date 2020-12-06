@@ -254,6 +254,7 @@ For Linux and MacOS, the created directory is located under the home directory `
 
 * `frameDelay`: The delay between frames in ms. If the value is `auto` use the actual recording delays.
 * `maxIdleTime`: Maximum delay between frames in ms. Ignored if the `frameDelay` isn't set to `auto`. Set to `auto` to prevent limiting the max idle time.
+* `lastFrameDelay`: Delay for the very last frame in ms. Overrides `maxIdleTime` and `frameDelay` for last frame. If the value is `auto` use the actual recording delay.
 
 ## GIF
 
