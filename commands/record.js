@@ -1,7 +1,7 @@
 /**
  * Record
  * Record your terminal and create a recording file
- * 
+ *
  * @author Mohammad Fares <faressoft.com@gmail.com>
  */
 
@@ -32,56 +32,51 @@ var records = [];
 
 /**
  * Normalize the config file
- * 
+ *
  * - Set default values in the json and raw
  * - Change the formatting of the values in the json and raw
- * 
+ *
  * @param  {Object} config {json, raw}
  * @return {Object} {json, raw}
  */
 function normalizeConfig(config) {
-
   // Default value for command
   if (!config.json.command) {
-
     // Windows OS
-    if (di.os.platform() === 'win32') {
-      di.utility.changeYAMLValue(config, 'command', 'powershell.exe');
+    if (di.os.platform() === "win32") {
+      di.utility.changeYAMLValue(config, "command", "powershell.exe");
     } else {
-      di.utility.changeYAMLValue(config, 'command', 'bash -l');
+      di.utility.changeYAMLValue(config, "command", "bash -l");
     }
-
   }
 
   // Default value for cwd
   if (!config.json.cwd) {
-    di.utility.changeYAMLValue(config, 'cwd', process.cwd());
+    di.utility.changeYAMLValue(config, "cwd", process.cwd());
   } else {
-    di.utility.changeYAMLValue(config, 'cwd', di.path.resolve(config.json.cwd));
+    di.utility.changeYAMLValue(config, "cwd", di.path.resolve(config.json.cwd));
   }
 
   // Default value for cols
   if (di.is.not.number(config.json.cols)) {
-    di.utility.changeYAMLValue(config, 'cols', process.stdout.columns);
+    di.utility.changeYAMLValue(config, "cols", process.stdout.columns);
   }
 
   // Default value for rows
   if (di.is.not.number(config.json.rows)) {
-    di.utility.changeYAMLValue(config, 'rows', process.stdout.rows);
+    di.utility.changeYAMLValue(config, "rows", process.stdout.rows);
   }
 
   return config;
-
 }
 
 /**
  * Calculate the duration from the last inserted record in ms,
  * and update lastRecordTimestamp
- * 
+ *
  * @return {Number}
  */
 function getDuration() {
-
   // Calculate the duration from the last inserted record
   var duration = di.now().toFixed() - lastRecordTimestamp;
 
@@ -89,16 +84,14 @@ function getDuration() {
   lastRecordTimestamp = di.now().toFixed();
 
   return duration;
-
 }
 
 /**
  * When an input or output is received from the PTY instance
- * 
+ *
  * @param {Buffer} content
  */
 function onData(content) {
-
   process.stdout.write(content);
 
   var duration = getDuration();
@@ -111,47 +104,42 @@ function onData(content) {
 
   records.push({
     delay: duration,
-    content: content
+    content: content,
   });
-
 }
 
 /**
  * Executed after the command completes its task
  * Store the output file with reserving the comments
- * 
+ *
  * @param {Object} argv
  */
 function done(argv) {
-
-  var outputYAML = '';
+  var outputYAML = "";
 
   // Add config parent element
-  outputYAML += '# The configurations that used for the recording, feel free to edit them\n';
-  outputYAML += 'config:\n\n';
+  outputYAML +=
+    "# The configurations that used for the recording, feel free to edit them\n";
+  outputYAML += "config:\n\n";
 
   // Add the configurations with indentation
-  outputYAML += config.raw.replace(/^/gm, '  ');
+  outputYAML += config.raw.replace(/^/gm, "  ");
 
   // Add the records
-  outputYAML += '\n# Records, feel free to edit them\n';
-  outputYAML += di.yaml.dump({records: records});
+  outputYAML += "\n# Records, feel free to edit them\n";
+  outputYAML += di.yaml.dump({ records: records });
 
   // Store the data into the recording file
   try {
-
-    di.fs.writeFileSync(recordingFile, outputYAML, 'utf8');
-
+    di.fs.writeFileSync(recordingFile, outputYAML, "utf8");
   } catch (error) {
-
     return di.errorHandler(error);
-
   }
 
-  console.log(di.chalk.green('Successfully Recorded'));
-  console.log('The recording data is saved into the file:');
+  console.log(di.chalk.green("Successfully Recorded"));
+  console.log("The recording data is saved into the file:");
   console.log(di.chalk.magenta(recordingFile));
-  console.log('You can edit the file and even change the configurations.');
+  console.log("You can edit the file and even change the configurations.");
   console.log(
     "The command " +
       di.chalk.magenta("`terminalizer share`") +
@@ -163,42 +151,41 @@ function done(argv) {
   process.stdin.pause();
 
   if (argv.skipSharing) {
-    return
+    return;
   }
 
-  di.inquirer.prompt([
-    {
-      type: "confirm",
-      name: "share",
-      message: "Would you like to share your recording on terminalizer.com?",
-    },
-  ]).then(function(answers) {
+  di.inquirer
+    .prompt([
+      {
+        type: "confirm",
+        name: "share",
+        message: "Would you like to share your recording on terminalizer.com?",
+      },
+    ])
+    .then(function (answers) {
+      if (!answers.share) {
+        return;
+      }
 
-    if (!answers.share) {
-      return;
-    }
+      console.log(
+        di.chalk.green(
+          "Let's now share your recording on https://terminalizer.com"
+        )
+      );
 
-    console.log(
-      di.chalk.green(
-        "Let's now share your recording on https://terminalizer.com"
-      )
-    );
-
-    // Invoke the share command
-    di.commands.share.handler({
-      recordingFile: recordingFile,
+      // Invoke the share command
+      di.commands.share.handler({
+        recordingFile: recordingFile,
+      });
     });
-  });
-
 }
 
 /**
  * The command's main function
- * 
+ *
  * @param {Object} argv
  */
 function command(argv) {
-
   // Normalize the configurations
   config = normalizeConfig(argv.config);
 
@@ -207,7 +194,7 @@ function command(argv) {
 
   // Overwrite the command to be executed
   if (argv.command) {
-    di.utility.changeYAMLValue(config, 'command', argv.command);
+    di.utility.changeYAMLValue(config, "command", argv.command);
   }
 
   // Split the command and its arguments
@@ -220,28 +207,31 @@ function command(argv) {
     cols: config.json.cols,
     rows: config.json.rows,
     cwd: config.json.cwd,
-    env: di.deepmerge(process.env, config.json.env)
+    env: di.deepmerge(process.env, config.json.env),
   });
 
   var onInput = ptyProcess.write.bind(ptyProcess);
 
-  console.log('The recording session is started');
-  console.log('Press', di.chalk.green('CTRL+D'), 'to exit and save the recording');
+  console.log("The recording session is started");
+  console.log(
+    "Press",
+    di.chalk.green("CTRL+D"),
+    "to exit and save the recording"
+  );
 
   // Input and output capturing and redirection
-  process.stdin.on('data', onInput);
-  ptyProcess.on('data', onData);
-  ptyProcess.on('exit', function() {
-    process.stdin.removeListener('data', onInput);
+  process.stdin.on("data", onInput);
+  ptyProcess.on("data", onData);
+  ptyProcess.on("exit", function () {
+    process.stdin.removeListener("data", onInput);
     done(argv);
   });
 
   // Input and output normalization
-  process.stdout.setDefaultEncoding('utf8');
-  process.stdin.setEncoding('utf8');
+  process.stdout.setDefaultEncoding("utf8");
+  process.stdin.setEncoding("utf8");
   process.stdin.setRawMode(true);
   process.stdin.resume();
-
 }
 
 ////////////////////////////////////////////////////
@@ -252,74 +242,76 @@ function command(argv) {
  * Command's usage
  * @type {String}
  */
-module.exports.command = 'record <recordingFile>';
+module.exports.command = "record <recordingFile>";
 
 /**
  * Command's description
  * @type {String}
  */
-module.exports.describe = 'Record your terminal and create a recording file';
+module.exports.describe = "Record your terminal and create a recording file";
 
 /**
  * Handler
- * 
+ *
  * @param {Object} argv
  */
-module.exports.handler = function(argv) {
-
+module.exports.handler = function (argv) {
   // Default value for the config option
-  if (typeof argv.config == 'undefined') {
+  if (typeof argv.config == "undefined") {
     argv.config = di.utility.getDefaultConfig();
   }
 
   // Execute the command
   command(argv);
-  
 };
 
 /**
  * Builder
- * 
+ *
  * @param {Object} yargs
  */
-module.exports.builder = function(yargs) {
-
+module.exports.builder = function (yargs) {
   // Define the recordingFile argument
-  yargs.positional('recordingFile', {
-    describe: 'A name for the recording file',
-    type: 'string',
-    coerce: di._.partial(di.utility.resolveFilePath, di._, 'yml')
+  yargs.positional("recordingFile", {
+    describe: "A name for the recording file",
+    type: "string",
+    coerce: di._.partial(di.utility.resolveFilePath, di._, "yml"),
   });
 
   // Define the config option
-  yargs.option('c', {
-    alias: 'config',
-    type: 'string',
-    describe: 'Overwrite the default configurations',
+  yargs.option("c", {
+    alias: "config",
+    type: "string",
+    describe: "Overwrite the default configurations",
     requiresArg: true,
-    coerce: di.utility.loadYAML
+    coerce: di.utility.loadYAML,
   });
 
   // Define the config option
-  yargs.option('d', {
-    alias: 'command',
-    type: 'string',
-    describe: 'The command to be executed',
+  yargs.option("d", {
+    alias: "command",
+    type: "string",
+    describe: "The command to be executed",
     requiresArg: true,
-    default: null
+    default: null,
   });
 
   // Define the config option
-  yargs.option('k', {
-    alias: 'skip-sharing',
-    type: 'boolean',
-    describe: 'Skip sharing and showing the sharing prompt message',
+  yargs.option("k", {
+    alias: "skip-sharing",
+    type: "boolean",
+    describe: "Skip sharing and showing the sharing prompt message",
     requiresArg: false,
-    default: false
+    default: false,
   });
 
   // Add examples
-  yargs.example('$0 record foo', 'Start recording and create a recording file called foo.yml');
-  yargs.example('$0 record foo --config config.yml', 'Start recording with your own configurations');
-
+  yargs.example(
+    "$0 record foo",
+    "Start recording and create a recording file called foo.yml"
+  );
+  yargs.example(
+    "$0 record foo --config config.yml",
+    "Start recording with your own configurations"
+  );
 };
