@@ -1,35 +1,35 @@
-const webpack = require('webpack');
-const path = require('path');
+const webpack = require("webpack");
+const path = require("path");
 
 // Extract CSS into separate files
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CleanWebpackPlugin = require("clean-webpack-plugin");
 
 // Global variables
 const globals = {
-  $: 'jquery',
-  jQuery: 'jquery',
-  Terminal: ['xterm', 'Terminal'],
-  'window.jQuery': 'jquery',
-  'window.$': 'jquery'
+  $: "jquery",
+  jQuery: "jquery",
+  Terminal: ["xterm", "Terminal"],
+  "window.jQuery": "jquery",
+  "window.$": "jquery",
 };
 
 module.exports = {
-  mode: 'production',
-  target: 'electron-renderer',
+  mode: "production",
+  target: "electron-renderer",
   entry: {
-    app: './render/src/js/app.js'
+    app: "./render/src/js/app.js",
   },
   output: {
-    filename: 'js/[name].js',
-    path: path.resolve(__dirname, 'render/dist'),
-    publicPath: '/dist/'
+    filename: "js/[name].js",
+    path: path.resolve(__dirname, "render/dist"),
+    publicPath: "/dist/",
   },
   plugins: [
-    new CleanWebpackPlugin(['./render/dist'], {verbose: false}),
+    new CleanWebpackPlugin(["./render/dist"], { verbose: false }),
     new webpack.ProvidePlugin(globals),
-    new MiniCssExtractPlugin({filename: 'css/[name].css'}),
-    new webpack.NoEmitOnErrorsPlugin()
+    new MiniCssExtractPlugin({ filename: "css/[name].css" }),
+    new webpack.NoEmitOnErrorsPlugin(),
   ],
   module: {
     rules: [
@@ -37,10 +37,10 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          {loader: MiniCssExtractPlugin.loader},
-          {loader: 'css-loader'}
+          { loader: MiniCssExtractPlugin.loader },
+          { loader: "css-loader" },
         ],
-      }
-    ]
-  }
+      },
+    ],
+  },
 };

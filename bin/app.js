@@ -2,8 +2,8 @@
 
 /**
  * Terminalizer
- * 
+ *
  * @author Mohammad Fares <faressoft.com@gmail.com>
  */
 
-require('../app.js');
+require("../app.js");
