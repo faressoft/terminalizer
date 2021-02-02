@@ -192,6 +192,14 @@ Options
 -s, --speed-factor  Speed factor, multiply the frames delays by this factor [number] [default: 1]
 ```
 
+## Saving
+
+> Certain terminals, such as Powershell on Microsoft Windows, require you to enter a certain command to save the file.
+
+```bash
+exit
+```
+
 ## Render
 
 > Render a recording file as an animated gif image
