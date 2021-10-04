@@ -456,6 +456,17 @@ Solution:
 sudo apt-get install libgconf-2-4
 ```
 
+> Error: EACCES: permission denied, access '/usr/local/lib'
+
+Solution:
+
+```bash
+sudo mkdir -p /usr/local/lib/node_modules && sudo chown -R $(whoami):$(whoami) /usr/local/lib/node_modules
+
+# then use the install command in the "Installation" section above
+npm install -g terminalizer
+```
+
 # License
 
 This project is under the MIT license.
