@@ -14,8 +14,8 @@
     "terminalizer": "bin/app.js"
   },
   "scripts": {
-    "dev": "NODE_ENV=development webpack --colors --watch",
-    "build": "NODE_ENV=production webpack --optimize-minimize --progress --colors",
+    "dev": "NODE_ENV=development webpack --color --watch",
+    "build": "NODE_ENV=production webpack --progress --color",
     "prepublish": "npm run build"
   },
   "keywords": [
@@ -41,38 +41,39 @@
     "pty"
   ],
   "dependencies": {
-    "@faressoft/node-pty-prebuilt": "^0.9.0",
     "async": "^2.6.3",
     "async-promises": "^0.2.2",
     "chalk": "^2.4.2",
     "death": "^1.1.0",
-    "deepmerge": "^2.2.1",
-    "electron": "^7.1.14",
+    "deepmerge": "^4.2.2",
+    "electron": "^13.6.6",
     "flowa": "^4.0.2",
     "fs-extra": "^5.0.0",
-    "gif-encoder": "^0.6.1",
-    "inquirer": "^6.5.2",
+    "gif-encoder": "^0.7.2",
+    "inquirer": "^8.2.2",
     "is_js": "^0.9.0",
-    "js-yaml": "^3.13.1",
-    "lodash": "^4.17.15",
+    "js-yaml": "^4.1.0",
+    "lodash": "^4.17.21",
+    "node-pty-prebuilt-multiarch": "^0.10.1-pre.4",
     "performance-now": "^2.1.0",
     "pngjs": "^3.4.0",
     "progress": "^2.0.3",
     "request": "^2.88.2",
-    "require-dir": "^1.1.0",
-    "string-argv": "0.0.2",
-    "uuid": "^3.4.0",
-    "yargs": "^12.0.5"
+    "require-dir": "^1.2.0",
+    "string-argv": "0.3.1",
+    "uuid": "^8.3.0",
+    "yargs": "^17.4.1"
   },
   "devDependencies": {
-    "ajv": "^6.12.0",
-    "clean-webpack-plugin": "^0.1.19",
-    "css-loader": "^1.0.0",
-    "jquery": "^3.4.1",
-    "mini-css-extract-plugin": "^0.4.5",
+    "ajv": "^8.11.0",
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^6.7.1",
+    "css-minimizer-webpack-plugin": "^3.4.1",
+    "jquery": "^3.6.0",
+    "mini-css-extract-plugin": "^2.6.0",
     "terminalizer-player": "^0.4.1",
-    "webpack": "^4.42.0",
-    "webpack-cli": "^3.3.11",
-    "xterm": "^3.14.5"
+    "webpack": "^5.72.0",
+    "webpack-cli": "^4.9.2",
+    "xterm": "^4.18.0"
   }
 }
