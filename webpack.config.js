@@ -4,6 +4,8 @@ const path = require('path');
 // Extract CSS into separate files
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const TerserPlugin = require("terser-webpack-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 // Global variables
 const globals = {
@@ -25,8 +27,18 @@ module.exports = {
     path: path.resolve(__dirname, 'render/dist'),
     publicPath: '/dist/'
   },
+  optimization: {
+    minimize: true,
+    minimizer: [
+      // For webpack@5 you can use the `...` syntax to extend existing minimizers (i.e. `terser-webpack-plugin`), uncomment the next line
+      // `...`,
+      new TerserPlugin(),
+      new CssMinimizerPlugin(),
+    ],
+  },
   plugins: [
-    new CleanWebpackPlugin(['./render/dist'], {verbose: false}),
+    new webpack.ProgressPlugin(),
+    //new CleanWebpackPlugin(), //['./render/dist'], {verbose: false}),
     new webpack.ProvidePlugin(globals),
     new MiniCssExtractPlugin({filename: 'css/[name].css'}),
     new webpack.NoEmitOnErrorsPlugin()

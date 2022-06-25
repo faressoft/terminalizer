@@ -18,7 +18,7 @@ var currentWindow      = remote.getCurrentWindow(),
 // Styles
 import '../css/app.css';
 import 'terminalizer-player/dist/css/terminalizer.min.css';
-import 'xterm/dist/xterm.css';
+import 'xterm/css/xterm.css';
 
 /**
  * Used for the step option

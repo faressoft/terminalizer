@@ -226,7 +226,11 @@ function command(argv) {
   var onInput = ptyProcess.write.bind(ptyProcess);
 
   console.log('The recording session is started');
-  console.log('Press', di.chalk.green('CTRL+D'), 'to exit and save the recording');
+  if (di.os.platform() === 'win32') {
+    console.log('Type', di.chalk.green('exit'), 'to exit and save the recording');
+  } else {
+    console.log('Press', di.chalk.green('CTRL+D'), 'to exit and save the recording');
+  }
 
   // Input and output capturing and redirection
   process.stdin.on('data', onInput);
