@@ -206,6 +206,7 @@ Options
 -o, --output   A name for the output file                                      [string]
 -q, --quality  The quality of the rendered image (1 - 100)                     [number]
 -s, --step     To reduce the number of rendered frames (step > 1) [number] [default: 1]
+-f, --speed-factor  Speed factor, multiply the frames delays by this factor    [number] [default: 1]
 ```
 
 ## Share
