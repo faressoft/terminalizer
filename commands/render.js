@@ -292,7 +292,8 @@ function command(argv) {
   // For adjusting (calculating) the frames delays
   var adjustFramesDelaysOptions = {
     frameDelay: config.frameDelay,
-    maxIdleTime: config.maxIdleTime
+    maxIdleTime: config.maxIdleTime,
+    lastFrameDelay: config.lastFrameDelay
   };
 
   // For rendering the frames into PNG images

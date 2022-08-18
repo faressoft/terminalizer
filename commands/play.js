@@ -41,7 +41,8 @@ function command(argv) {
   // Playing options
   var options = {
     frameDelay: argv.recordingFile.json.config.frameDelay,
-    maxIdleTime: argv.recordingFile.json.config.maxIdleTime
+    maxIdleTime: argv.recordingFile.json.config.maxIdleTime,
+    lastFrameDelay: argv.recordingFile.json.config.lastFrameDelay
   };
 
   // Use the actual delays between frames as recorded
@@ -49,7 +50,8 @@ function command(argv) {
 
     options = {
       frameDelay: 'auto',
-      maxIdleTime: 'auto'
+      maxIdleTime: 'auto',
+      lastFrameDelay: 'auto'
     };
 
   }
@@ -105,6 +107,11 @@ function adjustFramesDelays(records, options) {
     options.maxIdleTime = 2000;
   }
 
+  // Default value for options.lastFrameDelay
+  if (typeof options.lastFrameDelay === 'undefined') {
+    options.lastFrameDelay = 'auto';
+  }
+
   // Default value for options.speedFactor
   if (typeof options.speedFactor === 'undefined') {
     options.speedFactor = 1;
@@ -124,6 +131,11 @@ function adjustFramesDelays(records, options) {
     record.delay = record.delay * options.speedFactor;
     
   });
+
+  // Explicitly set lastFrameDelay
+  if (options.lastFrameDelay != 'auto') {
+    records[records.length - 1].delay = options.lastFrameDelay;
+  }
 
 }
 
