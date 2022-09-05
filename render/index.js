@@ -1,28 +1,31 @@
 /**
  * Render the frames into PNG images
  * An electron app, takes one command line argument `step`
- * 
+ *
  * @author Mohammad Fares <faressoft.com@gmail.com>
  */
 
-var path          = require('path'),
-    app           = require('electron').app,
-    BrowserWindow = require('electron').BrowserWindow,
-    ipcMain       = require('electron').ipcMain,
-    os            = require('os');
+const fs = require('fs');
+const path = require('path');
+const { app } = require('electron');
+const { BrowserWindow } = require('electron');
+const ipcMain = require('electron').ipcMain;
+const os = require('os');
+
+let mainWindow = null;
+
+/**
+ * The temporary rendering directory's path
+ * @type {String}
+ */
+var renderDir = path.join(__dirname, 'frames');
 
 /**
  * The step option
  * To reduce the number of rendered frames (step > 1)
  * @type {Number}
  */
-global.step = process.argv[2] || 1;
-
-/**
- * The temporary rendering directory's path
- * @type {String}
- */
-global.renderDir = path.join(__dirname, 'frames');
+var step = process.argv[2] || 1;
 
 // Hide the Dock for macOS
 if (os.platform() == 'darwin') {
@@ -36,33 +39,53 @@ app.on('ready', createWindow);
  * Create a hidden browser window and load the rendering page
  */
 function createWindow() {
-
   // Create a browser window
-  var win = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     show: false,
     width: 8000,
     height: 8000,
     webPreferences: {
-      nodeIntegration: true
-    }
+      preload: path.join(__dirname, 'preload.js'),
+    },
   });
 
-  // Load index.html 
-  win.loadURL('file://' + __dirname + '/index.html');
-
+  // Load index.html
+  mainWindow.loadURL('file://' + __dirname + '/index.html');
 }
 
 /**
  * A callback function for the event:
- * When a frame is captured
- * 
+ * getOptions to request the options that need
+ * to be passed to the renderer
+ *
  * @param {Object} event
- * @param {Number} recordIndex
  */
-ipcMain.on('captured', function(event, recordIndex) {
+ipcMain.handle('getOptions', function () {
+  return { step };
+});
 
-  console.log(recordIndex);
-  
+/**
+ * A callback function for the event:
+ * capturePage
+ *
+ * @param {Object} event
+ */
+ipcMain.handle('capturePage', async function (event, captureRect, frameIndex) {
+  const img = await mainWindow.webContents.capturePage(captureRect);
+  const outputPath = path.join(renderDir, frameIndex + '.png');
+  fs.writeFileSync(outputPath, img.toPNG());
+  console.log(frameIndex);
+});
+
+/**
+ * A callback function for the event:
+ * Close
+ *
+ * @param {Object} event
+ * @param {String} error
+ */
+ipcMain.on('close', function (event, error) {
+  mainWindow.close();
 });
 
 /**
@@ -72,8 +95,6 @@ ipcMain.on('captured', function(event, recordIndex) {
  * @param {Object} event
  * @param {String} error
  */
-ipcMain.on('error', function(event, error) {
-
+ipcMain.on('error', function (event, error) {
   process.stderr.write(error);
-  
 });

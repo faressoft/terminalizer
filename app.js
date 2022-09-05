@@ -41,7 +41,7 @@ di.require('progress', 'ProgressBar');
 di.require('gif-encoder', 'GIFEncoder');
 di.require('inquirer');
 
-di.set('pty', require('@faressoft/node-pty-prebuilt'));
+di.set('pty', require('node-pty-prebuilt-multiarch'));
 di.set('PNG', require('pngjs').PNG);
 di.set('spawn', require('child_process').spawn);
 di.set('utility', require('./utility.js'));
