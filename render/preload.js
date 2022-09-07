@@ -8,7 +8,6 @@ contextBridge.exposeInMainWorld('app', {
     return ipcRenderer.invoke('getOptions');
   },
   capturePage(captureRect, frameIndex) {
-    console.log('prelaod > capturePage');
     return ipcRenderer.invoke('capturePage', captureRect, frameIndex);
   },
 });

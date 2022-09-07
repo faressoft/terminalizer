@@ -71,6 +71,8 @@ ipcMain.handle('getOptions', function () {
  * @param {Object} event
  */
 ipcMain.handle('capturePage', async function (event, captureRect, frameIndex) {
+  // To show the cursor for headless browser
+  mainWindow.focusOnWebView();
   const img = await mainWindow.webContents.capturePage(captureRect);
   const outputPath = path.join(renderDir, frameIndex + '.png');
   fs.writeFileSync(outputPath, img.toPNG());

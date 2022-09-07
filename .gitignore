@@ -24,3 +24,6 @@ render/dist
 # Private assets
 demo
 logo
+
+# Others
+.DS_Store

@@ -104,7 +104,7 @@ npm install -g terminalizer
 
 > Still facing an issue? Check the [Issues](#issues) section or open a new issue.
 
-The installation should be very smooth with Node.js v4-v12. For newer versions, if the installation is failed, you may need to install the development tools to build the `C++` add-ons. Check [node-gyp](https://github.com/nodejs/node-gyp#installation).
+The installation should be very smooth with Node.js v4-v16. For newer versions, if the installation is failed, you may need to install the development tools to build the `C++` add-ons. Check [node-gyp](https://github.com/nodejs/node-gyp#installation).
 
 # Getting Started
 
