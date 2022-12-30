@@ -67,7 +67,7 @@
   "devDependencies": {
     "ajv": "^6.12.0",
     "clean-webpack-plugin": "^4.0.0",
-    "css-loader": "^1.0.0",
+    "css-loader": "^6.7.3",
     "jquery": "^3.4.1",
     "mini-css-extract-plugin": "^2.6.1",
     "terminalizer-player": "^0.4.1",
