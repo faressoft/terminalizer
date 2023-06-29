@@ -6,4 +6,4 @@
  * @author Mohammad Fares <faressoft.com@gmail.com>
  */
 
-require('../app.js');
+import '../app.js';

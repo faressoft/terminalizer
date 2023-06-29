@@ -6,6 +6,7 @@
   "author": "Mohammad Fares <faressoft.com@gmail.com>",
   "license": "MIT",
   "homepage": "http://terminalizer.com",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "https://github.com/faressoft/terminalizer.git"
@@ -59,8 +60,8 @@
     "pngjs": "^3.4.0",
     "progress": "^2.0.3",
     "request": "^2.88.2",
-    "require-dir": "^1.1.0",
     "string-argv": "0.0.2",
+    "tempy": "^3.0.0",
     "uuid": "^3.4.0",
     "yargs": "^12.0.5"
   },
