@@ -17,7 +17,8 @@ global.di = new DI();
 global.ROOT_PATH = __dirname;
 
 // The base url of the Terminalizer website
-global.BASEURL = 'https://terminalizer.com';
+// `www` is necessary due to https://github.com/faressoft/terminalizer/issues/207
+global.BASEURL = 'https://www.terminalizer.com';
 
 // Dependency Injection
 di.require('chalk');
