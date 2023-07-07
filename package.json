@@ -1,6 +1,6 @@
 {
   "name": "terminalizer",
-  "version": "0.7.2",
+  "version": "0.9.0",
   "description": "Record your terminal and generate animated gif images or share a web player",
   "main": "bin/app.js",
   "author": "Mohammad Fares <faressoft.com@gmail.com>",
@@ -14,8 +14,8 @@
     "terminalizer": "bin/app.js"
   },
   "scripts": {
-    "dev": "NODE_ENV=development webpack --colors --watch",
-    "build": "NODE_ENV=production webpack --optimize-minimize --progress --colors",
+    "dev": "NODE_ENV=development webpack --watch",
+    "build": "NODE_ENV=production webpack --progress",
     "prepublish": "npm run build"
   },
   "keywords": [
@@ -41,13 +41,12 @@
     "pty"
   ],
   "dependencies": {
-    "@faressoft/node-pty-prebuilt": "^0.9.0",
     "async": "^2.6.3",
     "async-promises": "^0.2.2",
     "chalk": "^2.4.2",
     "death": "^1.1.0",
     "deepmerge": "^2.2.1",
-    "electron": "^7.1.14",
+    "electron": "17",
     "flowa": "^4.0.2",
     "fs-extra": "^5.0.0",
     "gif-encoder": "^0.6.1",
@@ -55,6 +54,7 @@
     "is_js": "^0.9.0",
     "js-yaml": "^3.13.1",
     "lodash": "^4.17.15",
+    "node-pty-prebuilt-multiarch": "^0.10.1-pre.5",
     "performance-now": "^2.1.0",
     "pngjs": "^3.4.0",
     "progress": "^2.0.3",
@@ -66,13 +66,13 @@
   },
   "devDependencies": {
     "ajv": "^6.12.0",
-    "clean-webpack-plugin": "^0.1.19",
+    "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^1.0.0",
     "jquery": "^3.4.1",
-    "mini-css-extract-plugin": "^0.4.5",
+    "mini-css-extract-plugin": "^2.6.1",
     "terminalizer-player": "^0.4.1",
-    "webpack": "^4.42.0",
-    "webpack-cli": "^3.3.11",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0",
     "xterm": "^3.14.5"
   }
 }

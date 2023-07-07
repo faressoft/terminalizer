@@ -12,7 +12,7 @@
 [![Unicorn](https://img.shields.io/badge/nyancat-approved-ff69b4.svg)](https://www.youtube.com/watch?v=QH2-TGUlwu4)
 [![Tweet](https://img.shields.io/badge/twitter-share-76abec.svg)](https://goo.gl/QJzJu1)
 
-> Record your terminal and generate animated gif images or share a web player link [terminalizer.com](https://terminalizer.com) 
+> Record your terminal and generate animated gif images or share a web player link [terminalizer.com](https://terminalizer.com)
 
 <p align="center"><img src="/img/demo.gif?raw=true"/></p>
 
@@ -104,7 +104,7 @@ npm install -g terminalizer
 
 > Still facing an issue? Check the [Issues](#issues) section or open a new issue.
 
-The installation should be very smooth with Node.js v4-v12. For newer versions, if the installation is failed, you may need to install the development tools to build the `C++` add-ons. Check [node-gyp](https://github.com/nodejs/node-gyp#installation).
+The installation should be very smooth with Node.js v4-v16. For newer versions, if the installation is failed, you may need to install the development tools to build the `C++` add-ons. Check [node-gyp](https://github.com/nodejs/node-gyp#installation).
 
 # Getting Started
 
@@ -454,6 +454,17 @@ Solution:
 
 ```bash
 sudo apt-get install libgconf-2-4
+```
+
+> Error: EACCES: permission denied, access '/usr/local/lib'
+
+Solution:
+
+```bash
+sudo mkdir -p /usr/local/lib/node_modules && sudo chown -R $(whoami):$(whoami) /usr/local/lib/node_modules
+
+# then use the install command in the "Installation" section above
+npm install -g terminalizer
 ```
 
 # License

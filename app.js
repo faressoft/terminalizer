@@ -17,7 +17,8 @@ global.di = new DI();
 global.ROOT_PATH = __dirname;
 
 // The base url of the Terminalizer website
-global.BASEURL = 'https://terminalizer.com';
+// `www` is necessary due to https://github.com/faressoft/terminalizer/issues/207
+global.BASEURL = 'https://www.terminalizer.com';
 
 // Dependency Injection
 di.require('chalk');
@@ -41,7 +42,7 @@ di.require('progress', 'ProgressBar');
 di.require('gif-encoder', 'GIFEncoder');
 di.require('inquirer');
 
-di.set('pty', require('@faressoft/node-pty-prebuilt'));
+di.set('pty', require('node-pty-prebuilt-multiarch'));
 di.set('PNG', require('pngjs').PNG);
 di.set('spawn', require('child_process').spawn);
 di.set('utility', require('./utility.js'));
