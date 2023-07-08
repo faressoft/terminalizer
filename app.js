@@ -30,7 +30,6 @@ di.require('os');
 di.require('electron');
 di.require('deepmerge');
 di.require('uuid');
-di.require('is_js', 'is');
 di.require('lodash', '_');
 di.require('fs-extra', 'fs');
 di.require('js-yaml', 'yaml');

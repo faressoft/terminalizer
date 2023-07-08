@@ -127,7 +127,7 @@ function renderFrames(records, options) {
     function onData(data) {
 
       // Is not a recordIndex (to skip Electron's logs or new lines)
-      if (di.is.not.number(parseInt(data.toString()))) {
+      if (isNaN(parseInt(data.toString()))) {
         return;
       }
 

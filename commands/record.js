@@ -61,12 +61,12 @@ function normalizeConfig(config) {
   }
 
   // Default value for cols
-  if (di.is.not.number(config.json.cols)) {
+  if (isNaN(config.json.cols)) {
     di.utility.changeYAMLValue(config, 'cols', process.stdout.columns);
   }
 
   // Default value for rows
-  if (di.is.not.number(config.json.rows)) {
+  if (isNaN(config.json.rows)) {
     di.utility.changeYAMLValue(config, 'rows', process.stdout.rows);
   }
 
