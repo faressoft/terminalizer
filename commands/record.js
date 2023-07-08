@@ -170,7 +170,7 @@ function done(argv) {
     {
       type: "confirm",
       name: "share",
-      message: "Would you like to share your recording on terminalizer.com?",
+      message: "Would you like to share your recording on www.terminalizer.com?",
     },
   ]).then(function(answers) {
 
@@ -180,7 +180,7 @@ function done(argv) {
 
     console.log(
       di.chalk.green(
-        "Let's now share your recording on https://terminalizer.com"
+        "Let's now share your recording on https://www.terminalizer.com"
       )
     );
 

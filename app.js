@@ -52,7 +52,7 @@ di.set('errorHandler', errorHandler);
 // Initialize yargs
 yargs.usage('Usage: $0 <command> [options]')
      // Add link
-     .epilogue('For more information, check https://terminalizer.com')
+     .epilogue('For more information, check https://www.terminalizer.com')
      // Set the version number
      .version(package.version)
      // Add aliases for version and help options
