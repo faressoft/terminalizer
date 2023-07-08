@@ -103,6 +103,9 @@ function renderFrames(records, options) {
     // The number of frames
     var framesCount = records.length;
 
+    // Track execution time
+    var start = Date.now();
+
     // Create a progress bar
     var progressBar = getProgressBar(
       "Rendering",
@@ -116,24 +119,47 @@ function renderFrames(records, options) {
       { detached: false }
     );
 
-    render.stderr.on("data", function (error) {
-      render.kill();
-      reject(new Error(error));
-    });
+    render.stdout.on('data', onData);
+    render.stderr.on('data', onError);
+    render.on('close', onClose); 
 
-    render.stdout.on("data", function (data) {
+    // Track progress of rendering through stdout
+    function onData(data) {
+
       // Is not a recordIndex (to skip Electron's logs or new lines)
       if (di.is.not.number(parseInt(data.toString()))) {
         return;
       }
 
       progressBar.tick();
+    }
 
-      // Rendering is completed
-      if (progressBar.complete) {
+    // Track rendering errors observed on stderr
+    function onError(error) {
+
+      // If error is Buffer, print it, otherwise reject
+      if (!!error && error instanceof Buffer) {
+        console.log(di.chalk.yellow(`[render] ${error.toString('utf8').trim()}`));
+      } else {
+        render.kill();
+        reject(new Error("Unknown error [" + typeof error + "]: " + error));
+      }
+    } 
+
+    // React when rendering process finishes
+    function onClose(code) {
+      if (code !== 0) {
+        reject(new Error("Rendering exited with code " + code));
+      } else {
+        if (progressBar.complete) {
+          console.log(di.chalk.green('[render] Process successfully completed in ' + (Date.now() - start) + 'ms.'));
+        } else {
+          console.log(di.chalk.yellow('[render] Process completion unverified'));
+        }
+
         resolve();
       }
-    });
+    };
   });
 }
 
@@ -149,6 +175,9 @@ function mergeFrames(records, options, frameDimensions) {
   return new Promise(function (resolve, reject) {
     // The number of frames
     var framesCount = records.length;
+    
+    // Track execution time
+    var start = Date.now();
 
     // Used for the step option
     var stepsCounter = 0;
@@ -221,6 +250,9 @@ function mergeFrames(records, options, frameDimensions) {
 
         // Write the footer
         gif.finish();
+        
+        // Finish
+        console.log(di.chalk.green('[merge] Process successfully completed in ' + (Date.now() - start) + 'ms.'));
         resolve();
       }
     );
@@ -271,7 +303,7 @@ function command(argv) {
 
   // The path of the output file
   var outputFile = di.utility.resolveFilePath(
-    "render" + new Date().getTime(),
+    "render" + Date.now(),
     "gif"
   );
 
