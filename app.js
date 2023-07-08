@@ -33,7 +33,6 @@ di.require('uuid');
 di.require('is_js', 'is');
 di.require('lodash', '_');
 di.require('fs-extra', 'fs');
-di.require('flowa', 'Flowa');
 di.require('js-yaml', 'yaml');
 di.require('performance-now', 'now');
 di.require('async-promises', 'asyncPromises');

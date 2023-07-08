@@ -44,7 +44,6 @@ function isSet(input) {
  *   - Yes: use the token
  *   - No: Generate a new one and ask the user to register it
  *
- * @param  {Object}  context
  * @return {Promise}
  */
 function getToken(context) {
@@ -161,7 +160,7 @@ function shareRecording(context) {
   var token = context.getToken;
   var meta = context.getMeta;
   var recordingFile = context.recordingFile;
-  
+
   var options = {
     method: 'POST',
     url: BASEURL + '/v1/recording',
@@ -228,29 +227,29 @@ function shareRecording(context) {
  * @param {Object} argv
  */
 function command(argv) {
-
   // No global config
   if (!di.utility.isGlobalDirectoryCreated()) {
     require('./init.js').handler();
   }
 
-  di.Flowa.run({
+  var context = {...argv};
 
-    // Get a token for uploading recordings
-    getToken: getToken,
-
-    // Ask the user to enter meta data about the recording
-    getMeta: getMeta,
-
-    // Upload the recording
-    shareRecording: shareRecording
-
-  }, argv).then(function(context) {
-  
-    done(context.shareRecording);
-  
-  }).catch(di.errorHandler);
-
+  // Get a token for uploading recordings
+  getToken(context)
+    .then(function(token) {
+      context.getToken = token;
+      // Ask the user to enter meta data about the recording
+      return getMeta(context);
+    })
+    .then(function(meta) {
+      context.getMeta = meta;
+      // Upload the recording
+      return shareRecording(context);
+    })
+    .then(function(url) {
+      done(url);
+    })
+    .catch(di.errorHandler);
 }
 
 ////////////////////////////////////////////////////
