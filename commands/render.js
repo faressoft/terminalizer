@@ -5,6 +5,10 @@
  * @author Mohammad Fares <faressoft.com@gmail.com>
  */
 
+const tmp = require('tmp');
+
+tmp.setGracefulCleanup();
+
 /**
  * The directory to render the frames into
  */
@@ -85,7 +89,7 @@ function loadPNG(path) {
  */
 function getFrameDimensions() {
   // The path of the first rendered frame
-  var framePath = di.path.join(ROOT_PATH, "render/frames/0.png");
+  var framePath = di.path.join(renderDir, "0.png");
 
   // Read and parse a PNG image file
   return loadPNG(framePath).then(function (png) {
@@ -95,7 +99,6 @@ function getFrameDimensions() {
     };
   });
 }
-
 /**
  * Render the frames into PNG images
  *
@@ -210,7 +213,6 @@ function mergeFrames(records, options, frameDimensions) {
     // Write the headers
     gif.writeHeader();
 
-    // Foreach frame
     di.async.eachOfSeries(
       records,
       function (frame, index, callback) {
@@ -222,11 +224,7 @@ function mergeFrames(records, options, frameDimensions) {
         stepsCounter = (stepsCounter + 1) % options.step;
 
         // The path of the rendered frame
-        var framePath = di.path.join(
-          ROOT_PATH,
-          "render/frames",
-          index + ".png"
-        );
+        var framePath = di.path.join(renderDir, index + ".png");
 
         // Read and parse the rendered frame
         loadPNG(framePath)
@@ -255,7 +253,7 @@ function mergeFrames(records, options, frameDimensions) {
 
         // Write the footer
         gif.finish();
-        
+
         // Finish
         console.log(di.chalk.green('[merge] Process successfully completed in ' + (Date.now() - start) + 'ms.'));
         resolve();
