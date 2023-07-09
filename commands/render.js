@@ -6,6 +6,11 @@
  */
 
 /**
+ * The directory to render the frames into
+ */
+var renderDir = tmp.dirSync({ unsafeCleanup: true }).name;
+
+/**
  * Create a progress bar for processing frames
  *
  * @param  {String}      operation   a name for the operation
@@ -115,7 +120,7 @@ function renderFrames(records, options) {
     // Execute the rendering process
     var render = di.spawn(
       di.electron,
-      [di.path.join(ROOT_PATH, "render/index.js"), options.step],
+      [di.path.join(ROOT_PATH, "render/index.js"), renderDir, options.step,],
       { detached: false }
     );
 
