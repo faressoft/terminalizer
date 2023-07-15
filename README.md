@@ -243,7 +243,7 @@ terminalizer config
 terminalizer init
 ```
 
-For Linux and MacOS, the created directory is located under the home directory `~/.terminalizer`. For Windows, it is located under the `AppData`.
+For Linux and MacOS, the created directory is located under the home directory `~/config/terminalizer`. For Windows, it is located under the `AppData`.
 
 ## Recording
 

@@ -32,7 +32,7 @@ function command(argv) {
   // Create the global directory
   try {
 
-    di.fs.mkdirSync(di.utility.getGlobalDirectory());
+    di.fs.mkdirSync(di.utility.getGlobalDirectory(), { recursive: true });
 
   } catch (error) {
 
