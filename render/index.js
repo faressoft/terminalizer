@@ -15,17 +15,17 @@ const os = require('os');
 let mainWindow = null;
 
 /**
- * The temporary rendering directory's path
+ * The directory to render the frames into
  * @type {String}
  */
-var renderDir = path.join(__dirname, 'frames');
+const renderDir = process.argv[2];
 
 /**
  * The step option
  * To reduce the number of rendered frames (step > 1)
  * @type {Number}
  */
-var step = process.argv[2] || 1;
+const step = process.argv[3] || 1;
 
 // Hide the Dock for macOS
 if (os.platform() == 'darwin') {
