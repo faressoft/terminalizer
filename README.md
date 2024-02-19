@@ -28,6 +28,16 @@ Built while listening to [Nyan Cat](https://www.youtube.com/watch?v=QH2-TGUlwu4)
 
 ---
 
+<p align="center">Special Thanks To:</p>
+
+<p align="center">
+  <a href="https://warp.dev/?utm_source=github&utm_medium=referral&utm_campaign=terminalizer_20240215">
+    <img src="/img/sponsers/Warp.png?raw=true"/>
+  </a>
+</p>
+
+---
+
 # Table of Contents
 
 - [Terminalizer](#terminalizer)
@@ -60,40 +70,40 @@ Built while listening to [Nyan Cat](https://www.youtube.com/watch?v=QH2-TGUlwu4)
     - [Solid Frame Without Title](#solid-frame-without-title)
     - [Styling Hint](#styling-hint)
 - [FAQ](#faq)
-    - [How to support ZSH](#how-to-support-zsh)
+  - [How to support ZSH](#how-to-support-zsh)
 - [Issues](#issues)
 - [License](#license)
 
 # Features
 
-* Highly customizable.
-* Cross platform (Linux, Windows, MacOS).
-* Custom `window frames`.
-* Custom `font`.
-* Custom `colors`.
-* Custom `styles` with `CSS`.
-* Watermark.
-* Edit frames and adjust delays before rendering.
-* Skipping frames by a step value to reduce the number of rendered frames.
-* Render images with texts on them instead of capturing your screen for better quality.
-* The ability to configure:
-  * The command to capture (bash, powershell.exe, yourOwnCommand, etc)
-  * The current working directory.
-  * Explicit values for the number of cols and rows.
-  * GIF quality and repeating.
-  * Frames delays.
-  * The max idle time between frames.
-  * Cursor style.
-  * Font.
-  * Font size.
-  * Line height.
-  * Letter spacing.
-  * Theme.
+- Highly customizable.
+- Cross platform (Linux, Windows, MacOS).
+- Custom `window frames`.
+- Custom `font`.
+- Custom `colors`.
+- Custom `styles` with `CSS`.
+- Watermark.
+- Edit frames and adjust delays before rendering.
+- Skipping frames by a step value to reduce the number of rendered frames.
+- Render images with texts on them instead of capturing your screen for better quality.
+- The ability to configure:
+  - The command to capture (bash, powershell.exe, yourOwnCommand, etc)
+  - The current working directory.
+  - Explicit values for the number of cols and rows.
+  - GIF quality and repeating.
+  - Frames delays.
+  - The max idle time between frames.
+  - Cursor style.
+  - Font.
+  - Font size.
+  - Line height.
+  - Letter spacing.
+  - Theme.
 
 # What's Next
 
-* The `Generate` command to generate a web player for a recording file.
-* Support `apt-get`, `yum`, `brew` installation.
+- The `Generate` command to generate a web player for a recording file.
+- Support `apt-get`, `yum`, `brew` installation.
 
 # Installation
 
@@ -247,65 +257,65 @@ For Linux and MacOS, the created directory is located under the home directory `
 
 ## Recording
 
-* `command`: Specify a command to be executed like `/bin/bash -l`, `ls`, or any other command. The default is `bash` for `Linux` or `powershell.exe` for `Windows`.
-* `cwd`: Specify the current working directory path. The default is the current working directory path.
-* `env`: Export additional ENV variables, to be read by your scripts when starting the recording.
-* `cols`: Explicitly set the number of columns or use `auto` to take the current number of columns of your shell.
-* `rows`: Explicitly set the number of rows or use `auto` to take the current number of rows of your shell.
+- `command`: Specify a command to be executed like `/bin/bash -l`, `ls`, or any other command. The default is `bash` for `Linux` or `powershell.exe` for `Windows`.
+- `cwd`: Specify the current working directory path. The default is the current working directory path.
+- `env`: Export additional ENV variables, to be read by your scripts when starting the recording.
+- `cols`: Explicitly set the number of columns or use `auto` to take the current number of columns of your shell.
+- `rows`: Explicitly set the number of rows or use `auto` to take the current number of rows of your shell.
 
 ## Delays
 
-* `frameDelay`: The delay between frames in ms. If the value is `auto` use the actual recording delays.
-* `maxIdleTime`: Maximum delay between frames in ms. Ignored if the `frameDelay` isn't set to `auto`. Set to `auto` to prevent limiting the max idle time.
+- `frameDelay`: The delay between frames in ms. If the value is `auto` use the actual recording delays.
+- `maxIdleTime`: Maximum delay between frames in ms. Ignored if the `frameDelay` isn't set to `auto`. Set to `auto` to prevent limiting the max idle time.
 
 ## GIF
 
-* `quality`: The quality of the generated GIF image (1 - 100).
-* `repeat`: Amount of times to repeat GIF:
-  * If value is `-1`, play once.
-  * If value is `0`, loop indefinitely.
-  * If value is a positive number, loop `n` times.
+- `quality`: The quality of the generated GIF image (1 - 100).
+- `repeat`: Amount of times to repeat GIF:
+  - If value is `-1`, play once.
+  - If value is `0`, loop indefinitely.
+  - If value is a positive number, loop `n` times.
 
 ## Terminal
 
-* `cursorStyle`: Cursor style can be one of `block`, `underline`, or `bar`.
-* `fontFamily`: You can use any font that is installed on your machine like `Monaco` or `Lucida Console` (CSS-like list).
-* `fontSize`: The size of the font in pixels.
-* `lineHeight`: The height of lines in pixels.
-* `letterSpacing`: The spacing between letters in pixels.
+- `cursorStyle`: Cursor style can be one of `block`, `underline`, or `bar`.
+- `fontFamily`: You can use any font that is installed on your machine like `Monaco` or `Lucida Console` (CSS-like list).
+- `fontSize`: The size of the font in pixels.
+- `lineHeight`: The height of lines in pixels.
+- `letterSpacing`: The spacing between letters in pixels.
 
 ## Theme
 
 You can set the colors of your terminal using one of the CSS formats:
 
-* Hex: `#FFFFFF`.
-* RGB: `rgb(255, 255, 255)`.
-* HSL: `hsl(0, 0%, 100%)`.
-* Name: `white`, `red`, `blue`.
+- Hex: `#FFFFFF`.
+- RGB: `rgb(255, 255, 255)`.
+- HSL: `hsl(0, 0%, 100%)`.
+- Name: `white`, `red`, `blue`.
 
 > You can use the value `transparent` too.
 
 The default colors that are assigned to the terminal colors are:
 
-* background: ![#ffffff](https://placehold.it/15/ffffff/000000?text=+) `transparent`
-* foreground: ![#afafaf](https://placehold.it/15/afafaf/000000?text=+) `#afafaf`
-* cursor: ![#c7c7c7](https://placehold.it/15/c7c7c7/000000?text=+) `#c7c7c7`
-* black: ![#232628](https://placehold.it/15/232628/000000?text=+) `#232628`
-* red: ![#fc4384](https://placehold.it/15/fc4384/000000?text=+) `#fc4384`
-* green: ![#b3e33b](https://placehold.it/15/b3e33b/000000?text=+) `#b3e33b`
-* yellow: ![#ffa727](https://placehold.it/15/ffa727/000000?text=+) `#ffa727`
-* blue: ![#75dff2](https://placehold.it/15/75dff2/000000?text=+) `#75dff2`
-* magenta: ![#ae89fe](https://placehold.it/15/ae89fe/000000?text=+) `#ae89fe`
-* cyan: ![#708387](https://placehold.it/15/708387/000000?text=+) `#708387`
-* white: ![#d5d5d0](https://placehold.it/15/d5d5d0/000000?text=+) `#d5d5d0`
-* brightBlack: ![#626566](https://placehold.it/15/626566/000000?text=+) `#626566`
-* brightRed: ![#ff7fac](https://placehold.it/15/ff7fac/000000?text=+) `#ff7fac`
-* brightGreen: ![#c8ed71](https://placehold.it/15/c8ed71/000000?text=+) `#c8ed71`
-* brightYellow: ![#ebdf86](https://placehold.it/15/ebdf86/000000?text=+) `#ebdf86`
-* brightBlue: ![#75dff2](https://placehold.it/15/75dff2/000000?text=+) `#75dff2`
-* brightMagenta: ![#ae89fe](https://placehold.it/15/ae89fe/000000?text=+) `#ae89fe`
-* brightCyan: ![#b1c6ca](https://placehold.it/15/b1c6ca/000000?text=+) `#b1c6ca`
-* brightWhite: ![#f9f9f4](https://placehold.it/15/f9f9f4/000000?text=+) `#f9f9f4`
+- background: ![#ffffff](https://placehold.it/15/ffffff/000000?text=+) `transparent`
+- foreground: ![#afafaf](https://placehold.it/15/afafaf/000000?text=+) `#afafaf`
+- cursor: ![#c7c7c7](https://placehold.it/15/c7c7c7/000000?text=+) `#c7c7c7`
+- black: ![#232628](https://placehold.it/15/232628/000000?text=+) `#232628`
+- red: ![#fc4384](https://placehold.it/15/fc4384/000000?text=+) `#fc4384`
+- green: ![#b3e33b](https://placehold.it/15/b3e33b/000000?text=+) `#b3e33b`
+- yellow: ![#ffa727](https://placehold.it/15/ffa727/000000?text=+) `#ffa727`
+- blue: ![#75dff2](https://placehold.it/15/75dff2/000000?text=+) `#75dff2`
+- magenta: ![#ae89fe](https://placehold.it/15/ae89fe/000000?text=+) `#ae89fe`
+- cyan: ![#708387](https://placehold.it/15/708387/000000?text=+) `#708387`
+- white: ![#d5d5d0](https://placehold.it/15/d5d5d0/000000?text=+) `#d5d5d0`
+- brightBlack: ![#626566](https://placehold.it/15/626566/000000?text=+) `#626566`
+- brightRed: ![#ff7fac](https://placehold.it/15/ff7fac/000000?text=+) `#ff7fac`
+- brightGreen: ![#c8ed71](https://placehold.it/15/c8ed71/000000?text=+) `#c8ed71`
+- brightYellow: ![#ebdf86](https://placehold.it/15/ebdf86/000000?text=+) `#ebdf86`
+- brightBlue: ![#75dff2](https://placehold.it/15/75dff2/000000?text=+) `#75dff2`
+- brightMagenta: ![#ae89fe](https://placehold.it/15/ae89fe/000000?text=+) `#ae89fe`
+- brightCyan: ![#b1c6ca](https://placehold.it/15/b1c6ca/000000?text=+) `#b1c6ca`
+- brightWhite: ![#f9f9f4](https://placehold.it/15/f9f9f4/000000?text=+) `#f9f9f4`
 
 ## Watermark
 
@@ -324,16 +334,16 @@ watermark:
     opacity: 0.9
 ```
 
-* `watermark.imagePath`: An absolute path for the image on your machine or a URL.
-* `watermark.style`: Apply CSS styles (camelCase) to the watermark image, like resizing it.
+- `watermark.imagePath`: An absolute path for the image on your machine or a URL.
+- `watermark.style`: Apply CSS styles (camelCase) to the watermark image, like resizing it.
 
 ## Frame Box
 
 Terminalizer comes with predefined frames that you can use to make your GIF images look cool.
 
-* `frameBox.type`: Can be `null`, `window`, `floating`, or `solid`.
-* `frameBox.title`: To display a title for the frame or `null`.
-* `frameBox.style`: To apply custom CSS styles or to override the current ones.
+- `frameBox.type`: Can be `null`, `window`, `floating`, or `solid`.
+- `frameBox.title`: To display a title for the frame or `null`.
+- `frameBox.style`: To apply custom CSS styles or to override the current ones.
 
 ### Null Frame
 
@@ -416,26 +426,26 @@ frameBox:
 
 The default command that gets recorded for Linux is `bash -l`. You need to change the default command to `zsh`.
 
-* Generate a config file in the current directory
+- Generate a config file in the current directory
 
 ```bash
 terminalizer config
 ```
 
-* Open the generated config file in your preferred editor.
-* Change the `command` to `zsh`:
+- Open the generated config file in your preferred editor.
+- Change the `command` to `zsh`:
 
 ```
 command: zsh
 ```
 
-* You may need to change the font, check the font that is used in your terminal:
+- You may need to change the font, check the font that is used in your terminal:
 
 ```
 fontFamily: "Meslo for Powerline, Meslo LG M for Powerline"
 ```
 
-* Use the `-c` option to override the config file:
+- Use the `-c` option to override the config file:
 
 ```bash
 terminalizer record demo -c config.yml
