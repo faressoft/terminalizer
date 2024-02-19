@@ -20,7 +20,7 @@ Built to be jusT cOol 👌🦄 !
 
 > If you think so, support me with a `star` and a `follow` 😘
 
-Built while listening to [Nyan Cat](https://www.youtube.com/watch?v=QH2-TGUlwu4) 😛
+Built while listening to [Nyan Cat](https://www.youtube.com/watch?v=zqLEO5tIuYs) 😛
 
 ---
 
