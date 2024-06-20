@@ -229,6 +229,8 @@ terminalizer share <recordingFile>
 
 ## Generate
 
+**Warning**: This command is not implemented yet. It will be available in the next versions.
+
 > Generate a web player for a recording file
 
 ```bash
