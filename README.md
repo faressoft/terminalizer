@@ -26,16 +26,6 @@ Built to be jusT cOol 👌🦄 !
 
 ---
 
-<p align="center">Special Thanks To:</p>
-
-<p align="center">
-  <a href="https://warp.dev/?utm_source=github&utm_medium=referral&utm_campaign=terminalizer_20240215">
-    <img src="/img/sponsers/Warp.png?raw=true"/>
-  </a>
-</p>
-
----
-
 # Table of Contents
 
 - [Terminalizer](#terminalizer)
