@@ -20,6 +20,10 @@ let mainWindow = null;
  */
 const renderDir = process.argv[2];
 
+// fix GL_INVALID_OPERATION on render (https://github.com/electron/electron/issues/20702#issuecomment-582587510)
+app.disableHardwareAcceleration();
+app.commandLine.appendSwitch("disable-software-rasterizer");
+
 /**
  * The step option
  * To reduce the number of rendered frames (step > 1)
