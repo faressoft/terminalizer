@@ -439,6 +439,10 @@ fontFamily: "Meslo for Powerline, Meslo LG M for Powerline"
 terminalizer record demo -c config.yml
 ```
 
+### Usage on Windows
+
+On Windows, a new command or powershell window will open on record. Once you have finished the recording, you'll have to type `exit` to finish the recording.
+
 # Issues
 
 > error while loading shared libraries: libXss.so.1: cannot open shared object file: No such file or directory
