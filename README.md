@@ -98,7 +98,7 @@ Built to be jusT cOol 👌🦄 !
 You need to install [Node.js](https://nodejs.org/en/download/) first, then install the tool globally using this command:
 
 ```bash
-npm install -g terminalizer
+yarn global add terminalizer
 ```
 
 <p align="center"><img src="/img/install.gif?raw=true"/></p>
@@ -465,7 +465,7 @@ Solution:
 sudo mkdir -p /usr/local/lib/node_modules && sudo chown -R $(whoami):$(whoami) /usr/local/lib/node_modules
 
 # then use the install command in the "Installation" section above
-npm install -g terminalizer
+yarn global add terminalizer
 ```
 
 # License
