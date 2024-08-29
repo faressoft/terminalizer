@@ -41,8 +41,10 @@
     "pty"
   ],
   "dependencies": {
+    "@homebridge/node-pty-prebuilt-multiarch": "^0.11.14",
     "async": "^2.6.3",
     "async-promises": "^0.2.2",
+    "axios": "^1.7.5",
     "chalk": "^2.4.2",
     "death": "^1.1.0",
     "deepmerge": "^2.2.1",
@@ -52,15 +54,13 @@
     "inquirer": "^6.5.2",
     "js-yaml": "^3.13.1",
     "lodash": "^4.17.15",
-    "node-pty-prebuilt-multiarch": "^0.10.1-pre.5",
     "performance-now": "^2.1.0",
     "pngjs": "^3.4.0",
     "progress": "^2.0.3",
-    "request": "^2.88.2",
     "require-dir": "^1.1.0",
     "string-argv": "0.0.2",
     "tmp": "^0.2.1",
-    "uuid": "^3.4.0",
+    "uuid": "^10.0.0",
     "yargs": "^17.7.2"
   },
   "devDependencies": {
@@ -72,6 +72,6 @@
     "terminalizer-player": "^0.4.1",
     "webpack": "^5.88.1",
     "webpack-cli": "^4.10.0",
-    "xterm": "^3.14.5"
+    "xterm": "^v3.14.5"
   }
 }
