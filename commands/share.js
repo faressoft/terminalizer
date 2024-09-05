@@ -180,6 +180,11 @@ function shareRecording(context) {
         throw new Error(response.data.errors.join('\n'));
       }
 
+      // Recording too large
+      if (response.statusCode == 413) {
+        return reject(new Error('Recording is too long to share.'));
+      }
+      
       // Invalid token
       if (response.status === 401) {
         di.utility.removeToken();
